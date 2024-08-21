@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/08/21 15:50:16 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/08/21 15:50:17 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#ifndef CUBE_H
+# define CUBE_H
 
-int	main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
+#include "../libft/inc/libft.h"
 
-	ft_printf("test", 1);
-	return (0);
-}
+#endif

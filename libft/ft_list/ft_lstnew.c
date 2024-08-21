@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/20 18:31:18 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/20 18:31:22 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstnew(int data)
 {
-	(void)ac;
-	(void)av;
+	t_list	*element;
 
-	ft_printf("test", 1);
-	return (0);
+	element = (t_list *)malloc(sizeof(*element));
+	if (!element)
+		return (NULL);
+	element->data = data;
+	element->next = NULL;
+	return (element);
 }

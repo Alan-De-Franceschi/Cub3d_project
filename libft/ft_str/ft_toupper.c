@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/10 17:09:01 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/10 17:09:04 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_toupper(int c)
 {
-	(void)ac;
-	(void)av;
-
-	ft_printf("test", 1);
-	return (0);
+	if (c >= 97 && c <= 122)
+	{
+		c = c - 32;
+		return (c);
+	}
+	return (c);
 }

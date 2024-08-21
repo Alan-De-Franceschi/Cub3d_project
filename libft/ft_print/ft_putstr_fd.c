@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/14 13:50:23 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/14 13:50:25 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_putstr_fd(char *s, int fd)
 {
-	(void)ac;
-	(void)av;
-
-	ft_printf("test", 1);
-	return (0);
+	if (!s)
+		return (ft_putstr_fd("(null)", fd));
+	write(fd, s, ft_strlen(s));
+	return (ft_strlen(s));
 }

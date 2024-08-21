@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/02/23 15:16:18 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/02/23 15:16:23 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_abs(int n)
 {
-	(void)ac;
-	(void)av;
-
-	ft_printf("test", 1);
-	return (0);
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }

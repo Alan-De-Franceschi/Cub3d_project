@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/21 15:50:46 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/21 15:51:51 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstdelone(t_list *lst)
 {
-	(void)ac;
-	(void)av;
-
-	ft_printf("test", 1);
-	return (0);
+	if (!lst)
+		return ;
+	free(lst);
 }

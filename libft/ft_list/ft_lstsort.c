@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/03/04 12:52:24 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/03/04 12:52:27 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstsort(t_list *lst)
 {
-	(void)ac;
-	(void)av;
+	int		int_temp;
+	t_list	*tmp;
 
-	ft_printf("test", 1);
-	return (0);
+	tmp = lst;
+	while (lst->next)
+	{
+		if (lst->data > lst->next->data)
+		{
+			int_temp = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = int_temp;
+			lst = tmp;
+		}
+		else
+			lst = lst->next;
+	}
+	lst = tmp;
+	return (lst);
 }

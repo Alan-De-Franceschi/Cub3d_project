@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_int_in_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/02/29 12:17:23 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/02/29 12:17:25 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_int_in_lst(t_list *lst, int n)
 {
-	(void)ac;
-	(void)av;
+	t_list	*temp;
 
-	ft_printf("test", 1);
+	temp = lst;
+	while (temp)
+	{
+		if (n == temp->data)
+			return (1);
+		temp = temp->next;
+	}
 	return (0);
 }

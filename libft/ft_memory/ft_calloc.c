@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/10 15:09:04 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/10 15:09:06 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	(void)ac;
-	(void)av;
+	void	*m;
 
-	ft_printf("test", 1);
-	return (0);
+	if (nmemb == 0 || size == 0)
+	{
+		return (malloc(1));
+	}
+	if (size != 0 && nmemb > ((size_t) - 1) / size)
+		return (NULL);
+	m = malloc(nmemb * size);
+	if (!m)
+		return (NULL);
+	ft_bzero(m, nmemb * size);
+	return ((void *)m);
 }

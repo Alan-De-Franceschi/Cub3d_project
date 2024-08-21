@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/01/17 14:36:18 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/01/17 14:36:19 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_print_list(t_list *lst, int fd)
 {
-	(void)ac;
-	(void)av;
-
-	ft_printf("test", 1);
-	return (0);
+	while (lst)
+	{
+		ft_printf("[%d]->", fd, lst->data);
+		lst = lst->next;
+	}
+	if (!lst)
+		ft_printf("[NULL]", fd);
+	ft_printf("\n", fd);
 }

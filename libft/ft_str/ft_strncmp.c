@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2023/11/10 17:04:03 by ade-fran          #+#    #+#             */
+/*   Updated: 2023/11/10 17:04:06 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	(void)ac;
-	(void)av;
+	unsigned int	i;
 
-	ft_printf("test", 1);
+	i = 0;
+	while ((s2[i] || s1[i]) && i < n)
+	{
+		if (s2[i] != s1[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
+		i++;
+	}
 	return (0);
 }
