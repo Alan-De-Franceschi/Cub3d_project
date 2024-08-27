@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	cub3d
+NAME			=	cub3D
 
 CFLAGS			=	-Wall -Wextra -Werror -I ${INCLD_DIR}
 
@@ -62,6 +62,11 @@ SOURCES_PATH	=	src/
 
 SOURCES_MAIN	= 	main.c \
 
+SOURCES_PARSING	=	parsing/parsing.c \
+					parsing/check_args.c \
+
+SOURCES_ERRORS	=	errors/parsing_errors.c \
+
 # **************************************************************************** #
 #                                                                              #
 #                                  OBJECTS                                     #
@@ -71,6 +76,8 @@ SOURCES_MAIN	= 	main.c \
 OBJECTS_PATH	=	objs/
 
 OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.c=.o}) \
+					$(addprefix ${OBJECTS_PATH}, ${SOURCES_PARSING:.c=.o}) \
+					$(addprefix ${OBJECTS_PATH}, ${SOURCES_ERRORS:.c=.o}) \
 
 # **************************************************************************** #
 #                                                                              #
