@@ -96,7 +96,7 @@ ${LIB_PATH}: ${LIB_SRC} ${LIB_INCLD}
 
 ${MLX}:
 	@echo ""
-	@make -C minilibx-linux/ --no-print-directory
+	@make -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
 	@echo "${COLOUR_GREEN}\33[2K\nMinilibx compiled\n${COLOUR_END}"
 
 ${NAME}: $(LIB_PATH) $(MLX) ${OBJECTS} ${INCLD}
@@ -118,8 +118,8 @@ fclean:
 	@rm -f ${NAME}
 	@echo "${COLOUR_GREEN}\nCub3d cleaned\n${COLOUR_END}"
 	@make fclean -C libft/ --no-print-directory
-	@make clean -C minilibx-linux/ --no-print-directory
-	@echo "${COLOUR_GREEN}\nMinilibx cleaned\n${COLOUR_END}"
+	@make clean -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
+	@echo "${COLOUR_GREEN}Minilibx cleaned\n${COLOUR_END}"
 	
 
 re: fclean all
