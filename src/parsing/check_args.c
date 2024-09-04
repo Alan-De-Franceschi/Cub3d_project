@@ -12,16 +12,16 @@
 
 #include "cube.h"
 
-static int	ft_check_argc(int argc)
+static int	ft_check_argc(int argc, t_program *data)
 {
 	if (argc < 2)
-		return (ft_parsing_err(FEW_ARGS));
+		return (ft_parsing_err(FEW_ARGS, data));
 	if (argc > 2)
-		return (ft_parsing_err(MANY_ARGS));
+		return (ft_parsing_err(MANY_ARGS, data));
 	return (EXIT_SUCCESS);
 }
 
-static int	ft_check_file(char *args)
+static int	ft_check_file(char *args, t_program *data)
 {
 	int	i;
 	int	flag;
@@ -35,24 +35,24 @@ static int	ft_check_file(char *args)
 			flag = 1;
 			i++;
 			if (args[i++] != 'c')
-				return (ft_parsing_err(FILE_ERR));
+				return (ft_parsing_err(FILE_ERR, data));
 			if (args[i++] != 'u')
-				return (ft_parsing_err(FILE_ERR));
+				return (ft_parsing_err(FILE_ERR, data));
 			if (args[i++] != 'b')
-				return (ft_parsing_err(FILE_ERR));
+				return (ft_parsing_err(FILE_ERR, data));
 			break ;
 		}
 	}
 	if (args[i] || flag == 0)
-		return (ft_parsing_err(FILE_ERR));
+		return (ft_parsing_err(FILE_ERR, data));
 	return (0);
 }
 
-int	ft_check_args(char *argv, int argc)
+int	ft_check_args(char *argv, int argc, t_program *data)
 {
-	if (ft_check_argc(argc) == EXIT_FAILURE)
+	if (ft_check_argc(argc, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (ft_check_file(argv) == EXIT_FAILURE)
+	if (ft_check_file(argv, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

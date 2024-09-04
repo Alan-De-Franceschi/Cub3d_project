@@ -12,13 +12,20 @@
 
 #include "cube.h"
 
-int	ft_parsing_err(int err)
+int	ft_parsing_err(int err, t_program *data)
 {
 	if (err == FILE_ERR)
 		ft_putstr_fd("Args: Invalid filename", 2);
-	if (err == FEW_ARGS)
+	else if (err == FEW_ARGS)
 		ft_putstr_fd("Args: Too few arguments", 2);
-	if (err == MANY_ARGS)
+	else if (err == MANY_ARGS)
 		ft_putstr_fd("Args: Too many arguments", 2);
-	return (1);
+	else if (err == OPEN_ERR)
+		perror("Open");
+	else if (err == GNL_ERR)
+		ft_putstr_fd("Get Next Line: Error", 2);
+	else if (err == W_PARAM)
+		ft_putstr_fd("Parsing : Wrong parameters", 2);
+	ft_free_parsing(data);
+	return (EXIT_FAILURE);
 }

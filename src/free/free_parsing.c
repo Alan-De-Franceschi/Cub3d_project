@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:18:27 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:28 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/09/04 17:49:19 by ade-fran          #+#    #+#             */
+/*   Updated: 2024/09/04 17:49:20 by ade-fran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	main(int argc, char **argv)
+void	ft_free_parsing(t_program *data)
 {
-	t_program	data;
-
-	if (ft_parsing(argc, argv[1], &data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (data->map_file != -1)
+		close(data->map_file);
+	free(data->n_path);
+	free(data->s_path);
+	free(data->w_path);
+	free(data->e_path);
+	free(data->f_colors);
+	free(data->c_colors);
 }

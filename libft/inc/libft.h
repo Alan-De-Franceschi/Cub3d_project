@@ -34,7 +34,7 @@ int		ft_putnbr_base_fd(unsigned int n, char *base, int fd);
 int		ft_putptr(uintptr_t ptr, char *base, int fd);
 int		ft_printf(const char *fmt, int fd, ...);
 size_t	ft_check_new_line(const char *s, int c);
-char	*ft_get_next_line(int fd);
+char	*ft_get_next_line(int fd, int *err);
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

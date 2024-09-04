@@ -12,9 +12,12 @@
 
 #include "cube.h"
 
-int	ft_parsing(int argc, char *argv)
+int	ft_parsing(int argc, char *argv, t_program *data)
 {
-	if (ft_check_args(argv, argc) == EXIT_FAILURE)
+	ft_init_data(data);
+	if (ft_check_args(argv, argc, data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (ft_read_file(argv, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

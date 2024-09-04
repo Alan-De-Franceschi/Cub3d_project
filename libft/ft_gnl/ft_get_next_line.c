@@ -79,7 +79,7 @@ static char	*ft_get_line(char *temp, char (*buf)[BUFFER_SIZE + 1], char **line)
 	return (*line);
 }
 
-char	*ft_get_next_line(int fd)
+char	*ft_get_next_line(int fd, int *err)
 {
 	static char		buf[BUFFER_SIZE + 1];
 	char			*temp;
@@ -89,7 +89,10 @@ char	*ft_get_next_line(int fd)
 	r = 1;
 	temp = NULL;
 	if (fd == -1 || BUFFER_SIZE == 0 || read(fd, NULL, 0) < 0)
+	{
+		*err = 1;
 		return (NULL);
+	}
 	if (ft_check_new_line(buf, '\n'))
 	{
 		temp = ft_strjoin(temp, buf);
