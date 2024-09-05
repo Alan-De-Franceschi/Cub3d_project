@@ -60,6 +60,7 @@ SOURCES_STR		=	ft_str/ft_strlcpy.c \
 					ft_str/ft_isascii.c \
 					ft_str/ft_tolower.c \
 					ft_str/ft_toupper.c \
+					ft_str/ft_strtab_len.c \
 
 SOURCES_MEMORY	=	ft_memory/ft_memchr.c \
 					ft_memory/ft_memset.c \
@@ -96,7 +97,6 @@ SOURCES_GNL		=	ft_gnl/ft_get_next_line.c \
 
 SOURCES_SPLIT	=	ft_split/ft_split.c \
 					ft_split/ft_count_word.c \
-					ft_split/ft_free_strtab.c \
 
 # **************************************************************************** #
 #                                                                              #

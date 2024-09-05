@@ -65,6 +65,8 @@ enum	e_errors
 	OPEN_ERR	= 5,
 	GNL_ERR		= 6,
 	W_PARAM		= 7,
+	SPLIT_MEM	= 8,
+	MEM_ERR		= 9,
 };
 
 int		ft_parsing_err(int err, t_program *data);

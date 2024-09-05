@@ -21,14 +21,15 @@ int	ft_parsing_err(int err, t_program *data)
 	else if (err == MANY_ARGS)
 		ft_putstr_fd("Error\nArgs: Too many arguments", 2);
 	else if (err == OPEN_ERR)
-	{
-		ft_putstr_fd("Error\n", 2);
-		perror("Open");
-	}
+		perror("Error\nOpen");
 	else if (err == GNL_ERR)
 		ft_putstr_fd("Error\nGet Next Line: Error", 2);
 	else if (err == W_PARAM)
-		ft_putstr_fd("Error\nParsing : Wrong parameters", 2);
+		ft_putstr_fd("Error\nParsing: Wrong parameters format", 2);
+	else if (err == SPLIT_MEM)
+		perror("Error\nSplit");
+	else if (err == MEM_ERR)
+		perror("Error\nMalloc");
 	ft_free_parsing(data);
 	return (EXIT_FAILURE);
 }
