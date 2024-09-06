@@ -30,6 +30,8 @@ int	ft_parsing_err(int err, t_program *data)
 		perror("Error\nSplit");
 	else if (err == MEM_ERR)
 		perror("Error\nMalloc");
+	else if (err == PATH_ERR)
+		perror("Open");
 	ft_free_parsing(data);
 	return (EXIT_FAILURE);
 }

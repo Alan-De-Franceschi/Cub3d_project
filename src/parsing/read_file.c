@@ -12,6 +12,20 @@
 
 #include "cube.h"
 
+int	ft_check_path(char *path, t_program *data)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Error\n%s: ", 2, path);
+		return (ft_parsing_err(PATH_ERR, data));
+	}
+	close(fd);
+	return (EXIT_SUCCESS);
+}
+
 int	ft_save_path(char *line, char *path, t_program *data)
 {
 	char	**split;
@@ -27,8 +41,17 @@ int	ft_save_path(char *line, char *path, t_program *data)
 		++data->parameters;
 	}
 	else
-		return (ft_parsing_err(W_PARAM, data));
-	return (EXIT_SUCCESS);
+		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, data));
+	return (ft_free_strtab(split), ft_check_path(path, data));
+}
+
+int	ft_save_colors(char *line, int *colors, t_program *data)
+{
+	char	**split;
+
+	split = ft_split(line, " ,");
+	if (!split)
+		return(ft_parsing_err(SPLIT_MEM, data));
 }
 
 int	ft_read_param(char *line, t_program *data)

@@ -67,6 +67,7 @@ enum	e_errors
 	W_PARAM		= 7,
 	SPLIT_MEM	= 8,
 	MEM_ERR		= 9,
+	PATH_ERR	= 10,
 };
 
 int		ft_parsing_err(int err, t_program *data);
