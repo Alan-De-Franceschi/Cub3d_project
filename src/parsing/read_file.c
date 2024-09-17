@@ -26,52 +26,71 @@ int	ft_check_path(char *path, t_program *data)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_save_path(char *line, char *path, t_program *data)
+int	ft_save_path(char *line, char **path, t_program *data)
 {
 	char	**split;
 
-	split = ft_split(line, " ");
+	split = ft_split(line, " \n");
 	if (!split)
 		return(ft_parsing_err(SPLIT_MEM, data));
 	if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0)
 	{
-		path = ft_strdup(split[1]);
-		if (!path)
+		*path = ft_strdup(split[1]);
+		if (!(*path))
 			return (ft_free_strtab(split), ft_parsing_err(MEM_ERR, data));
 		++data->parameters;
 	}
 	else
 		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, data));
-	return (ft_free_strtab(split), ft_check_path(path, data));
+	return (ft_free_strtab(split), ft_check_path(*path, data));
 }
 
-int	ft_save_colors(char *line, int *colors, t_program *data)
+int	ft_save_colors(char *line, int **colors, t_program *data)
 {
 	char	**split;
+	int		i;
 
-	split = ft_split(line, " ,");
+	i = 0;
+	split = ft_split(line, " ,\n");
 	if (!split)
-		return(ft_parsing_err(SPLIT_MEM, data));
+		return (ft_parsing_err(SPLIT_MEM, data));
+	if (ft_strtab_len(split) == 4)
+	{
+		*colors = malloc(sizeof(int) * 3);
+		if (!(*colors))
+			return (ft_parsing_err(MEM_ERR, data));
+		while (i < 3)
+		{
+			(*colors)[i] = ft_atoi(split[i + 1], &data->err);
+			if (data->err || (*colors)[i] < 0 || (*colors)[i] > 255)
+				return (ft_free_strtab(split), ft_parsing_err(ATOI_ERR, data));
+			++i;
+		}
+		++data->parameters;
+	}
+	else
+		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, data));
+	return (ft_free_strtab(split), EXIT_SUCCESS);
 }
 
 int	ft_read_param(char *line, t_program *data)
 {
-	while (*line == ' ')
+	while (*line == ' ' || *line == 9)
 		line++;
 	if (*line == '\n')
 		return (EXIT_SUCCESS);
 	if (ft_strncmp(line, "NO", 2) == 0)
-		return(ft_save_path(line, data->n_path, data));
+		return(ft_save_path(line, &data->n_path, data));
 	else if (ft_strncmp(line, "SO", 2) == 0)
-		return(ft_save_path(line, data->s_path, data));
+		return(ft_save_path(line, &data->s_path, data));
 	else if (ft_strncmp(line, "WE", 2) == 0)
-		return(ft_save_path(line, data->w_path, data));
+		return(ft_save_path(line, &data->w_path, data));
 	else if (ft_strncmp(line, "EA", 2) == 0)
-		return(ft_save_path(line, data->e_path, data));
+		return(ft_save_path(line, &data->e_path, data));
 	else if (ft_strncmp(line, "F", 1) == 0)
-		return(ft_save_colors(line, data->f_colors, data));
+		return(ft_save_colors(line, &data->f_colors, data));
 	else if (ft_strncmp(line, "C", 1) == 0)
-		return(ft_save_colors(line, data->c_colors, data));
+		return(ft_save_colors(line, &data->c_colors, data));
 	else
 		return (ft_parsing_err(W_PARAM, data));
 	return (EXIT_SUCCESS);
@@ -86,7 +105,7 @@ int	ft_read_file(char *argv, t_program *data)
 		return (ft_parsing_err(OPEN_ERR, data));
 	while (1)
 	{
-		line = ft_get_next_line(data->map_file, data->err);
+		line = ft_get_next_line(data->map_file, &data->err);
 		if (!line)
 		{
 			if (data->err || errno)

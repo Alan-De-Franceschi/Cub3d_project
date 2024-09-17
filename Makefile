@@ -84,6 +84,7 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_INIT:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_PARSING:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_ERRORS:.c=.o}) \
+					$(addprefix ${OBJECTS_PATH}, ${SOURCES_FREE:.c=.o}) \
 
 # **************************************************************************** #
 #                                                                              #
