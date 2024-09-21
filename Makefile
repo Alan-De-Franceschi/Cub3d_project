@@ -71,6 +71,7 @@ SOURCES_PARSING	=	parsing/parsing.c \
 					parsing/parameters/save_colors.c \
 					parsing/map/read_map.c \
 					parsing/map/parse_map.c \
+					parsing/map/parse_map_utils.c \
 
 SOURCES_ERRORS	=	errors/parsing_errors.c \
 

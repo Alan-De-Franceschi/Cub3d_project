@@ -30,7 +30,6 @@ typedef struct	s_map
 	int		x;
 	int		y;
 	char	value;
-
 }	t_map;
 
 typedef struct	s_program
@@ -48,7 +47,6 @@ typedef struct	s_program
 	int			map_file;
 	t_vector	*vemap;
 	t_map		*map;
-
 }	t_program;
 
 /****************************************************************************/
@@ -70,6 +68,7 @@ int		ft_save_colors(char *line, int **colors, t_program *data);
 
 int		ft_read_map(char *line, t_vector *vector, t_program *data);
 int		ft_parse_map(t_vector *vector, t_program *data);
+int		ft_count_dot(char **array);
 
 /****************************************************************************/
 /*                            Error management                              */
@@ -87,6 +86,7 @@ enum	e_errors
 	MEM_ERR		= 9,
 	PATH_ERR	= 10,
 	ATOI_ERR	= 11,
+	TAB_ERR		= 12,
 };
 
 int		ft_parsing_err(int err, char *param, t_program *data);
