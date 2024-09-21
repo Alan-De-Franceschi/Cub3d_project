@@ -66,7 +66,11 @@ SOURCES_INIT	= 	init/init_data.c \
 
 SOURCES_PARSING	=	parsing/parsing.c \
 					parsing/check_args.c \
-					parsing/read_file.c \
+					parsing/parameters/read_parameters.c \
+					parsing/parameters/save_path.c \
+					parsing/parameters/save_colors.c \
+					parsing/map/read_map.c \
+					parsing/map/parse_map.c \
 
 SOURCES_ERRORS	=	errors/parsing_errors.c \
 

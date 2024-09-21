@@ -61,6 +61,9 @@ SOURCES_STR		=	ft_str/ft_strlcpy.c \
 					ft_str/ft_tolower.c \
 					ft_str/ft_toupper.c \
 					ft_str/ft_strtab_len.c \
+					ft_str/str_vector/ft_vinit.c \
+					ft_str/str_vector/ft_vealloc.c \
+					ft_str/str_vector/ft_vadd.c \
 
 SOURCES_MEMORY	=	ft_memory/ft_memchr.c \
 					ft_memory/ft_memset.c \

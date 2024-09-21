@@ -12,7 +12,14 @@
 
 #include "cube.h"
 
-int	ft_parsing_err(int err, t_program *data)
+static void	ft_print_wrong_param(char *param)
+{
+	ft_putstr_fd("Error\n", 2);
+	write(2, param, ft_strlen(param) - 1);
+	ft_putstr_fd(": Wrong parameters format\n", 2);
+}
+
+int	ft_parsing_err(int err, char *param, t_program *data)
 {
 	if (err == FILE_ERR)
 		ft_putstr_fd("Error\nArgs: Invalid filename\n", 2);
@@ -25,7 +32,7 @@ int	ft_parsing_err(int err, t_program *data)
 	else if (err == GNL_ERR)
 		ft_putstr_fd("Error\nGet Next Line: Error\n", 2);
 	else if (err == W_PARAM)
-		ft_putstr_fd("Error\nParsing: Wrong parameters format\n", 2);
+		ft_print_wrong_param(param);
 	else if (err == SPLIT_MEM)
 		perror("Error\nSplit\n");
 	else if (err == MEM_ERR)

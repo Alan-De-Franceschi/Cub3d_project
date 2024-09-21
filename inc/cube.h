@@ -25,25 +25,37 @@
 /*                              Structures                                  */
 /****************************************************************************/
 
+typedef struct	s_map
+{
+	int		x;
+	int		y;
+	char	value;
+
+}	t_map;
+
 typedef struct	s_program
 {
-	int		map_file;
-	char	*n_path;
-	char	*s_path;
-	char	*e_path;
-	char	*w_path;
-	int		*f_colors;
-	int		*c_colors;
-	int		parameters;
-	int		err;
-	
+	int			err;
+	/*parameters*/
+	int			parameters;
+	char		*n_path;
+	char		*s_path;
+	char		*e_path;
+	char		*w_path;
+	int			*f_colors;
+	int			*c_colors;
+	/*map*/
+	int			map_file;
+	t_vector	*vemap;
+	t_map		*map;
+
 }	t_program;
 
 /****************************************************************************/
 /*                               Init                                       */
 /****************************************************************************/
 
-void	ft_init_data(t_program *data);
+int		ft_init_data(t_program *data);
 
 /****************************************************************************/
 /*                               Parsing                                    */
@@ -51,7 +63,13 @@ void	ft_init_data(t_program *data);
 
 int		ft_parsing(int argc, char *argv, t_program *data);
 int		ft_check_args(char *args, int argc, t_program *data);
-int		ft_read_file(char *argv, t_program *data);
+
+int		ft_read_param(char *line, t_program *data);
+int		ft_save_path(char *line, char **path, t_program *data);
+int		ft_save_colors(char *line, int **colors, t_program *data);
+
+int		ft_read_map(char *line, t_vector *vector, t_program *data);
+int		ft_parse_map(t_vector *vector, t_program *data);
 
 /****************************************************************************/
 /*                            Error management                              */
@@ -71,7 +89,7 @@ enum	e_errors
 	ATOI_ERR	= 11,
 };
 
-int		ft_parsing_err(int err, t_program *data);
+int		ft_parsing_err(int err, char *param, t_program *data);
 
 /****************************************************************************/
 /*                                   Free                                   */

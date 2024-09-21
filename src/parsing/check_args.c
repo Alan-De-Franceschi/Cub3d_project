@@ -15,9 +15,9 @@
 static int	ft_check_argc(int argc, t_program *data)
 {
 	if (argc < 2)
-		return (ft_parsing_err(FEW_ARGS, data));
+		return (ft_parsing_err(FEW_ARGS, NULL, data));
 	if (argc > 2)
-		return (ft_parsing_err(MANY_ARGS, data));
+		return (ft_parsing_err(MANY_ARGS, NULL, data));
 	return (EXIT_SUCCESS);
 }
 
@@ -35,16 +35,16 @@ static int	ft_check_file(char *args, t_program *data)
 			flag = 1;
 			i++;
 			if (args[i++] != 'c')
-				return (ft_parsing_err(FILE_ERR, data));
+				return (ft_parsing_err(FILE_ERR, NULL, data));
 			if (args[i++] != 'u')
-				return (ft_parsing_err(FILE_ERR, data));
+				return (ft_parsing_err(FILE_ERR, NULL, data));
 			if (args[i++] != 'b')
-				return (ft_parsing_err(FILE_ERR, data));
+				return (ft_parsing_err(FILE_ERR, NULL, data));
 			break ;
 		}
 	}
 	if (args[i] || flag == 0)
-		return (ft_parsing_err(FILE_ERR, data));
+		return (ft_parsing_err(FILE_ERR, NULL, data));
 	return (0);
 }
 

@@ -37,6 +37,13 @@ int	main(int argc, char **argv)
 		ft_printf("%d\n", 1, data.c_colors[i]);
 		++i;
 	}
+	i = 0;
+	ft_printf("\nMap array :\n", 1);
+	while (data.vemap->array[i])
+	{
+		ft_printf("%s", 1, data.vemap->array[i]);
+		++i;
+	}
 	ft_free_parsing(&data);
 	return (EXIT_SUCCESS);
 }
