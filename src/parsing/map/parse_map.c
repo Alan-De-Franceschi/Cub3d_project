@@ -18,7 +18,6 @@ static int	ft_map_alloc(t_vector *vector, t_program *data)
 
 	nb_dot = ft_count_dot(vector->array);
 	data->map_size = nb_dot;
-	ft_printf("\nNb_dot = %d\n\n", 1, nb_dot);
 	data->map = ft_calloc(nb_dot, sizeof(t_map));
 	if (!data->map)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
