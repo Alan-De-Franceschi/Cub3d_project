@@ -14,7 +14,7 @@
 
 static int	ft_read_file(t_program *data)
 {
-	char 		*line;
+	char	*line;
 
 	while (1)
 	{

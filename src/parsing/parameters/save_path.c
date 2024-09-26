@@ -26,13 +26,13 @@ static int	ft_check_path(char *path, t_program *data)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_save_path(char *line, char **path, t_program *data)
+int	ft_save_path(char *line, char **path, t_program *data, int *param)
 {
 	char	**split;
 
 	split = ft_split(line, " \n\t");
 	if (!split)
-		return(ft_parsing_err(SPLIT_MEM, NULL, data));
+		return (ft_parsing_err(SPLIT_MEM, NULL, data));
 	if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0)
 	{
 		*path = ft_strdup(split[1]);
@@ -45,5 +45,6 @@ int	ft_save_path(char *line, char **path, t_program *data)
 	}
 	else
 		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, line, data));
+	*param = 1;
 	return (ft_free_strtab(split), ft_check_path(*path, data));
 }

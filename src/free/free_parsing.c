@@ -20,8 +20,6 @@ void	ft_free_parsing(t_program *data)
 	free(data->s_path);
 	free(data->w_path);
 	free(data->e_path);
-	free(data->f_colors);
-	free(data->c_colors);
 	ft_free_strtab(data->vemap->array);
 	free(data->vemap);
 	free(data->map);

@@ -12,20 +12,6 @@
 
 #include "libft.h"
 
-static size_t	ft_in_charset(char *charset, char c)
-{
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 static char	*ft_get_word(char const *s, char *charset, size_t *p)
 {
 	size_t		l;

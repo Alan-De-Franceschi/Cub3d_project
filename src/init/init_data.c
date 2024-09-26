@@ -17,15 +17,22 @@ int	ft_init_data(t_program *data)
 	data->err = 0;
 	data->parameters = 0;
 	data->n_path = NULL;
+	data->n = 0;
 	data->s_path = NULL;
+	data->s = 0;
 	data->e_path = NULL;
+	data->e = 0;
 	data->w_path = NULL;
-	data->f_colors = NULL;
-	data->c_colors = NULL;
+	data->w = 0;
+	data->f_colors = 0;
+	data->f = 0;
+	data->c_colors = 0;
+	data->c = 0;
 	data->map_file = -1;
 	data->vemap = ft_vinit();
 	if (!data->vemap)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	data->map = NULL;
+	data->map_size = 0;
 	return (EXIT_SUCCESS);
 }

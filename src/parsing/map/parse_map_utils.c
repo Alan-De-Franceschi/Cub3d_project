@@ -19,50 +19,72 @@ static int	ft_linelen(const char *s)
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\n')
-	{
-		if (s[i] == 9)
-			return (-1);
+	while (s[i] != '\n' && s[i] != '\0')
 		++i;
-	}
 	return (i);
 }
 
-static int	ft_max_len(char **array)
+int	ft_max_len(char **array)
 {
 	int	i;
 	int	max;
-	int len;
-	int	line;
+	int	len;
 
 	i = 0;
 	max = 0;
 	len = 0;
-	line = 1;
 	while (array[i])
 	{
 		len = ft_linelen(array[i]);
-		if (len = -1)
-		{
-			ft_printf("Error\nMap: Tab on line %d\n", 2, line);
-			return (-1);
-		}
 		if (len > max)
 			max = len;
 		++i;
-		++line;
 	}
 	return (max);
 }
 
 int	ft_count_dot(char **array)
 {
-	int count;
-	int max_len;
+	int	count;
+	int	max_len;
 
 	max_len = ft_max_len(array);
-	if (max_len == -1)
-		return (-1);
 	count = ft_strtab_len(array) * max_len;
 	return (count);
+}
+
+int	ft_hlimit(char *str, int line)
+{
+	while (*str != '\n' && *str != '\0')
+	{
+		if (!ft_in_charset(" 1", *str))
+			return (ft_map_err(NOT_CLOSED, 0, line, *str));
+		++str;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	ft_vlimit(char *str, int line, int *start)
+{
+	while (*str == ' ')
+	{
+		if (*str == 9)
+			return (ft_map_err(INV_CHAR, 0, line, *str));
+		++str;
+	}
+	if (*str != '1')
+		return (ft_map_err(NOT_CLOSED, 0, line, *str));
+	while (!ft_in_charset("\n\0", *str))
+	{
+		if (!ft_in_charset("01NSEW ", *str))
+			return (ft_map_err(INV_CHAR, 0, line, *str));
+		if (ft_in_charset("NSEW", *str))
+			*start += 1;
+		++str;
+	}
+	while (ft_in_charset(" \n\0", *str))
+		--str;
+	if (*str != '1')
+		return (ft_map_err(NOT_CLOSED, *start, line, *str));
+	return (EXIT_SUCCESS);
 }

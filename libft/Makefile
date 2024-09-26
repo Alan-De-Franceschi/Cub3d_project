@@ -60,6 +60,7 @@ SOURCES_STR		=	ft_str/ft_strlcpy.c \
 					ft_str/ft_isascii.c \
 					ft_str/ft_tolower.c \
 					ft_str/ft_toupper.c \
+					ft_str/ft_in_charset.c \
 					ft_str/ft_strtab_len.c \
 					ft_str/str_vector/ft_vinit.c \
 					ft_str/str_vector/ft_vealloc.c \

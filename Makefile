@@ -12,7 +12,7 @@
 
 NAME			=	cub3D
 
-CFLAGS			=	-Wall -Wextra -Werror -I ${INCLD_DIR}
+CFLAGS			=	-g3 -Wall -Wextra -Werror -I ${INCLD_DIR}
 
 CC				=	cc
 
@@ -71,6 +71,8 @@ SOURCES_PARSING	=	parsing/parsing.c \
 					parsing/parameters/save_colors.c \
 					parsing/map/read_map.c \
 					parsing/map/parse_map.c \
+					parsing/map/map_validity.c \
+					parsing/map/fill_map.c \
 					parsing/map/parse_map_utils.c \
 
 SOURCES_ERRORS	=	errors/parsing_errors.c \
