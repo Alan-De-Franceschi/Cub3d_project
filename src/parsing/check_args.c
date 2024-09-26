@@ -48,11 +48,18 @@ static int	ft_check_file(char *args, t_program *data)
 	return (0);
 }
 
+static void	ft_check_bonus(char *argv, t_program *data)
+{
+	if (ft_strnstr(argv, "_bonus", ft_strlen(argv)))
+		data->bonus = 1;
+}
+
 int	ft_check_args(char *argv, int argc, t_program *data)
 {
 	if (ft_check_argc(argc, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (ft_check_file(argv, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	ft_check_bonus(argv, data);
 	return (EXIT_SUCCESS);
 }

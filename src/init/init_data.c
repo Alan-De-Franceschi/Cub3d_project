@@ -15,6 +15,7 @@
 int	ft_init_data(t_program *data)
 {
 	data->err = 0;
+	data->bonus = 0;
 	data->parameters = 0;
 	data->n_path = NULL;
 	data->n = 0;

@@ -1,7 +1,11 @@
 minilibx-linux/
+objs/
+libft/obj/
 east
 north
 south
 west
 test.cub
 print_parsing
+test_bonus.cub
+cub3D

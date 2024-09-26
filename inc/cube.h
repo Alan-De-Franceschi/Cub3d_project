@@ -35,6 +35,7 @@ typedef struct s_map
 typedef struct s_program
 {
 	int			err;
+	int			bonus;
 	int			parameters;
 	char		*n_path;
 	int			n;
