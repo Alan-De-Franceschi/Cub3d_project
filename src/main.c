@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 {
 	t_program	data;
 
-
 	if (ft_parsing(argc, argv[1], &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	mlx_mouse_move(game.mlx, game.win, WEIGHT / 2, HEIGHT / 2);
