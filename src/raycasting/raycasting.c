@@ -25,15 +25,15 @@ static void	ft_get_x_point_of_impact(t_ray *ray)
 	return ;
 }
 
-int	ft_raycasting(t_game *game)
+int	ft_raycasting(t_program *data)
 {
-	game->begin = ft_get_current_time();
-	ft_clear_image(game->img.addr, WEIGHT, HEIGHT);
-	ft_raycast(game);
-	if (BONUS)
+	data->game.begin = ft_get_current_time();
+	ft_clear_image(data->game.img.addr, WEIGHT, HEIGHT);
+	ft_raycast(&data->game);
+	if (data->bonus)
 	{
-		ft_clear_image(game->minimap.addr, 200, 200);
-		ft_minimap(game);
+		ft_clear_image(data->game.minimap.addr, 200, 200);
+		ft_minimap(&data->game);
 	}
 	return (0);
 }

@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-static void	ft_init_map(t_map *map)
+static void	ft_init_map(t_map **map, t_map **copy, t_vector **vemap, t_vector **vmap)
 {
-	map->x = 0;
-	map->y = 0;
+	*copy = *map;
+	*vmap = *vemap;
 	return ;
 }
 
@@ -54,46 +54,46 @@ static void	ft_init_player(t_player *player)
 	return ;
 }
 
-int	ft_init_game(t_game *game)
+int	ft_init_game(t_program *data)
 {
 	int	weight;
 	int	height;
 
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
+	data->game.mlx = mlx_init();
+	if (data->game.mlx == NULL)
 		return (1);
-	game->win = mlx_new_window(game->mlx, WEIGHT, HEIGHT, "Cub3d");
-	if (game->win == NULL)
-		return (free(game->mlx), 1);
-	ft_init_map(&game->map);
-	ft_init_player(&game->player);
-	game->minimap.img = mlx_new_image(game->mlx, 200, 200);
-	if (game->minimap.img == NULL)
-		return (free(game->mlx), free(game->win), 1);
-	game->minimap.addr = (int *)mlx_get_data_addr(game->minimap.img,
-			&game->minimap.bits_per_pixel, &game->minimap.line_length,
-			&game->minimap.endian);
-	game->img.img = mlx_new_image(game->mlx, WEIGHT, HEIGHT);
-	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
-			&game->img.bits_per_pixel, &game->img.line_length,
-			&game->img.endian);
-	game->E.img = NULL;
-	game->E.img = mlx_xpm_file_to_image(game->mlx, "assets/Bricks_1.xpm",
+	data->game.win = mlx_new_window(data->game.mlx, WEIGHT, HEIGHT, "Cub3d");
+	if (data->game.win == NULL)
+		return (free(data->game.mlx), 1);
+	ft_init_map(&data->map, &data->game.map, &data->vemap, &data->game.vmap);
+	ft_init_player(&data->game.player);
+	data->game.minimap.img = mlx_new_image(data->game.mlx, 200, 200);
+	if (data->game.minimap.img == NULL)
+		return (free(data->game.mlx), free(data->game.win), 1);
+	data->game.minimap.addr = (int *)mlx_get_data_addr(data->game.minimap.img,
+			&data->game.minimap.bits_per_pixel, &data->game.minimap.line_length,
+			&data->game.minimap.endian);
+	data->game.img.img = mlx_new_image(data->game.mlx, WEIGHT, HEIGHT);
+	data->game.img.addr = (int *)mlx_get_data_addr(data->game.img.img,
+			&data->game.img.bits_per_pixel, &data->game.img.line_length,
+			&data->game.img.endian);
+	data->game.E.img = NULL;
+	data->game.E.img = mlx_xpm_file_to_image(data->game.mlx, "assets/Bricks_1.xpm",
 			&weight, &height);
-	game->E.addr = (int *)mlx_get_data_addr(game->E.img,
-			&game->E.bits_per_pixel, &game->E.line_length, &game->E.endian);
-	game->W.img = mlx_xpm_file_to_image(game->mlx, "assets/Star-Block_1.xpm",
+	data->game.E.addr = (int *)mlx_get_data_addr(data->game.E.img,
+			&data->game.E.bits_per_pixel, &data->game.E.line_length, &data->game.E.endian);
+	data->game.W.img = mlx_xpm_file_to_image(data->game.mlx, "assets/Star-Block_1.xpm",
 			&weight, &height);
-	game->W.addr = (int *)mlx_get_data_addr(game->W.img,
-			&game->W.bits_per_pixel, &game->W.line_length, &game->W.endian);
-	game->S.img = mlx_xpm_file_to_image(game->mlx,
+	data->game.W.addr = (int *)mlx_get_data_addr(data->game.W.img,
+			&data->game.W.bits_per_pixel, &data->game.W.line_length, &data->game.W.endian);
+	data->game.S.img = mlx_xpm_file_to_image(data->game.mlx,
 			"assets/Mossy-Small-Brick_1.xpm", &weight, &height);
-	game->S.addr = (int *)mlx_get_data_addr(game->S.img,
-			&game->S.bits_per_pixel, &game->S.line_length, &game->S.endian);
-	game->N.img = mlx_xpm_file_to_image(game->mlx, "assets/Wood.xpm", &weight,
+	data->game.S.addr = (int *)mlx_get_data_addr(data->game.S.img,
+			&data->game.S.bits_per_pixel, &data->game.S.line_length, &data->game.S.endian);
+	data->game.N.img = mlx_xpm_file_to_image(data->game.mlx, "assets/Wood.xpm", &weight,
 			&height);
-	game->N.addr = (int *)mlx_get_data_addr(game->N.img,
-			&game->N.bits_per_pixel, &game->N.line_length, &game->N.endian);
-	game->oldX = WEIGHT / 2;
+	data->game.N.addr = (int *)mlx_get_data_addr(data->game.N.img,
+			&data->game.N.bits_per_pixel, &data->game.N.line_length, &data->game.N.endian);
+	data->game.oldX = WEIGHT / 2;
 	return (0);
 }
