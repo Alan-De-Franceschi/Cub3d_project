@@ -128,13 +128,9 @@ typedef struct s_program
 	int				err;
 	int				bonus;
 	int				parameters;
-	char			*n_path;
 	int				n;
-	char			*s_path;
 	int				s;
-	char			*e_path;
 	int				e;
-	char			*w_path;
 	int				w;
 	int				f_colors;
 	int				f;
@@ -144,6 +140,8 @@ typedef struct s_program
 	t_vector		*vemap;
 	t_map			*map;
 	int				map_size;
+	int				nb_line; // a implementer
+	int				nb_column; // a imlementer
 	int				start_x;
 	int				start_y;
 	char			start;

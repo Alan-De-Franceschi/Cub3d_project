@@ -14,12 +14,10 @@
 
 void	ft_free_parsing(t_program *data)
 {
+
+	// a check
 	if (data->map_file != -1)
 		close(data->map_file);
-	free(data->n_path);
-	free(data->s_path);
-	free(data->w_path);
-	free(data->e_path);
 	ft_free_strtab(data->vemap->array);
 	free(data->vemap);
 	free(data->map);

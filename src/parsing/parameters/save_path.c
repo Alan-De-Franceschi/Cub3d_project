@@ -12,32 +12,36 @@
 
 #include "cub3d.h"
 
-static int	ft_check_path(char *path, t_program *data) {
-  int fd;
+static int	ft_load_assets(char **path, t_data *view, t_program *data)
+{
+	int	weight;
+	int	height;
 
-  fd = open(path, O_RDONLY);
-  if (fd == -1) {
-    ft_printf("Error\n%s: ", 2, path);
-    return (ft_parsing_err(PATH_ERR, NULL, data));
-  }
-  close(fd);
-  return (EXIT_SUCCESS);
+	view->img = mlx_xpm_file_to_image(data->game.mlx, path,
+			&weight, &height);
+	if (!view->img)
+		return (EXIT_FAILURE); //gestion erreur
+	view->addr = (int *)mlx_get_data_addr(view->img,
+		&view->bits_per_pixel, &view->line_length, &view->endian);
+	if (!view->addr)
+		return (EXIT_FAILURE); //gestion erreur
 }
 
-int	ft_save_path(char *line, char **path, t_program *data, int *param) {
+int	ft_save_path(char *line, t_data *view, t_program *data, int *param) 
+{
   char **split;
 
   split = ft_split(line, " \n\t");
   if (!split)
     return (ft_parsing_err(SPLIT_MEM, NULL, data));
-  if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0) {
-    *path = ft_strdup(split[1]);
-    if (!(*path)) {
-      return (ft_free_strtab(split), ft_parsing_err(MEM_ERR, NULL, data));
-    }
+  if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0) 
+  {
+    if (ft_load_assets(split[1], view, data) == EXIT_FAILURE);
+		return(ft_free_strtab(split), EXIT_FAILURE);
     ++data->parameters;
-  } else
+  } 
+  else
     return (ft_free_strtab(split), ft_parsing_err(W_PARAM, line, data));
   *param = 1;
-  return (ft_free_strtab(split), ft_check_path(*path, data));
+  return (ft_free_strtab(split), EXIT_SUCCESS);
 }

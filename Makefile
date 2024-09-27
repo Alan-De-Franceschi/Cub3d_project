@@ -63,7 +63,7 @@ SOURCES_PATH		=	src/
 SOURCES_MAIN		= 	main.c \
 
 SOURCES_INIT		= 	init/init_data.c \
-					init/init_game.c \
+						init/init_game.c \
 
 SOURCES_PARSING		=	parsing/parsing.c \
 						parsing/check_args.c \
