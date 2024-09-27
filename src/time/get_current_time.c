@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parsing.c                                     :+:      :+:    :+:   */
+/*   get_current_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaung <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 17:49:19 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/09/04 17:49:20 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/06/16 16:50:07 by jaung             #+#    #+#             */
+/*   Updated: 2024/06/16 16:50:08 by jaung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "cub3d.h"
+#include <sys/time.h>
 
-void	ft_free_parsing(t_program *data)
+double	ft_get_time_in_millisecond(struct timeval *time)
 {
-	if (data->map_file != -1)
-		close(data->map_file);
-	free(data->n_path);
-	free(data->s_path);
-	free(data->w_path);
-	free(data->e_path);
-	ft_free_strtab(data->vemap->array);
-	free(data->vemap);
-	free(data->map);
+	return (time->tv_sec * 1000 + time->tv_usec / 1000);
+}
+
+struct timeval	ft_get_current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
 static int	ft_check_comma(char *line)
 {

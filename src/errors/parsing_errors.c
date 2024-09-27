@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
 static void	ft_print_wrong_param(char *param, t_program *data)
 {
@@ -58,8 +58,7 @@ int	ft_map_err(int err, int start, int line, char c)
 		if (c == 9)
 			ft_printf("Error\nMap: Tab on line %d\n", 2, line);
 		else
-			ft_printf("Error\nMap: Invalid char '%c' on line %d\n",
-				2, c, line);
+			ft_printf("Error\nMap: Invalid char '%c' on line %d\n", 2, c, line);
 	}
 	if (err == NOT_CLOSED)
 		ft_printf("Error\nMap: Map not closed at line %d\n", 2, line);

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parsing.c                                     :+:      :+:    :+:   */
+/*   draw_pixels.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaung <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 17:49:19 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/09/04 17:49:20 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/06/16 13:19:42 by jaung             #+#    #+#             */
+/*   Updated: 2024/06/16 13:19:44 by jaung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "cub3d.h"
 
-void	ft_free_parsing(t_program *data)
+void	draw(t_data *data, int x, int y, int color)
 {
-	if (data->map_file != -1)
-		close(data->map_file);
-	free(data->n_path);
-	free(data->s_path);
-	free(data->w_path);
-	free(data->e_path);
-	ft_free_strtab(data->vemap->array);
-	free(data->vemap);
-	free(data->map);
+	char	*dst;
+
+	dst = (char *)data->addr + (y * data->line_length + x
+			* (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+	return ;
 }

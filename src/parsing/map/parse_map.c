@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
 static int	ft_map_alloc(t_vector *vector, t_program *data)
 {

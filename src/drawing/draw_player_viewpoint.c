@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parsing.c                                     :+:      :+:    :+:   */
+/*   draw_player_viewpoint.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaung <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 17:49:19 by ade-fran          #+#    #+#             */
-/*   Updated: 2024/09/04 17:49:20 by ade-fran         ###   ########.fr       */
+/*   Created: 2024/09/26 17:01:13 by jaung             #+#    #+#             */
+/*   Updated: 2024/09/26 17:01:14 by jaung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "cub3d.h"
 
-void	ft_free_parsing(t_program *data)
+void	ft_draw_player_viewpoint(t_ray ray, t_game *game, int x)
 {
-	if (data->map_file != -1)
-		close(data->map_file);
-	free(data->n_path);
-	free(data->s_path);
-	free(data->w_path);
-	free(data->e_path);
-	ft_free_strtab(data->vemap->array);
-	free(data->vemap);
-	free(data->map);
+	ft_draw_wall(ray, game, x);
+	ft_draw_floor_and_celling(ray, game, x);
+	return ;
 }

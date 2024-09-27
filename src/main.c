@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
 // static void	ft_print_parsing(t_program *data)
 // {
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 
 	if (ft_parsing(argc, argv[1], &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	ft_print_parsing(&data);
-	//ft_free_parsing(&data);
+	// ft_print_parsing(&data);
+	ft_free_parsing(&data);
 	return (EXIT_SUCCESS);
 }

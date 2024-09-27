@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
 static void	ft_check_start(char c, int x, int y, t_program *data)
 {
@@ -44,9 +44,9 @@ static void	ft_fill_end_of_line(t_map *dot, int *i, int *x, int y)
 
 void	ft_fill_map(char **array, t_program *data, int line_len)
 {
-	int		i;
-	int		x;
-	int		y;
+	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
 	y = 0;
