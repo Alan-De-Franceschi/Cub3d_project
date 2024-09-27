@@ -113,7 +113,6 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	t_player		player;
-	t_map			map;
 	t_data			img;
 	t_data			E;
 	t_data			W;
@@ -148,6 +147,7 @@ typedef struct s_program
 	int				start_x;
 	int				start_y;
 	char			start;
+	t_game			game;
 }					t_program;
 
 /****************************************************************************/

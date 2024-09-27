@@ -35,5 +35,7 @@ int	ft_init_data(t_program *data)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	data->map = NULL;
 	data->map_size = 0;
+	if (ft_init_game(&data->game) == EXIT_FAILURE)
+		return (EXIT_FAILURE); // gestion erreur
 	return (EXIT_SUCCESS);
 }
