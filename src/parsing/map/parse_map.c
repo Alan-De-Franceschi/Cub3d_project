@@ -26,13 +26,12 @@ static int	ft_map_alloc(t_vector *vector, t_program *data)
 
 int	ft_parse_map(t_vector *vector, t_program *data)
 {
-	int	line_len;
-
-	line_len = ft_max_len(vector->array);
+	data->nb_column = ft_max_len(vector->array);
+	data->nb_line = ft_strtab_len(vector->array);
 	if (ft_map_validity(vector->array) == EXIT_FAILURE)
 		return (ft_free_parsing(data), EXIT_FAILURE);
 	if (ft_map_alloc(vector, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	ft_fill_map(vector->array, data, line_len);
+	ft_fill_map(vector->array, data, data->nb_column);
 	return (EXIT_SUCCESS);
 }

@@ -140,12 +140,13 @@ typedef struct s_program
 	t_vector		*vemap;
 	t_map			*map;
 	int				map_size;
-	int				nb_line; // a implementer
-	int				nb_column; // a imlementer
+	int				nb_line;
+	int				nb_column;
 	int				start_x;
 	int				start_y;
 	char			start;
 	t_game			game;
+	int				game_init;
 }					t_program;
 
 /****************************************************************************/
@@ -164,7 +165,7 @@ int					ft_parsing(int argc, char *argv, t_program *data);
 int					ft_check_args(char *args, int argc, t_program *data);
 /*Parameters*/
 int					ft_read_param(char *line, t_program *data);
-int					ft_save_path(char *line, char **path, t_program *data,
+int					ft_save_path(char *line, t_data *view, t_program *data,
 						int *param);
 int					ft_save_colors(char *line, int *colors, t_program *data,
 						int *param);
@@ -185,25 +186,28 @@ int					ft_vlimit(char *str, int line, int *start);
 
 enum				e_errors
 {
-	FILE_ERR = 2,
-	FEW_ARGS = 3,
-	MANY_ARGS = 4,
-	OPEN_ERR = 5,
-	GNL_ERR = 6,
-	W_PARAM = 7,
-	SPLIT_MEM = 8,
-	MEM_ERR = 9,
-	PATH_ERR = 10,
-	ATOI_ERR = 11,
-	TAB_ERR = 12,
-	INV_CHAR = 13,
-	NOT_CLOSED = 14,
-	MAP_SIZE = 15,
-	NO_START = 16,
+	FILE_ERR	= 2,
+	FEW_ARGS	= 3,
+	MANY_ARGS	= 4,
+	OPEN_ERR	= 5,
+	GNL_ERR		= 6,
+	W_PARAM		= 7,
+	SPLIT_MEM	= 8,
+	MEM_ERR		= 9,
+	PATH_ERR	= 10,
+	ATOI_ERR	= 11,
+	TAB_ERR		= 12,
+	INV_CHAR	= 13,
+	NOT_CLOSED	= 14,
+	MAP_SIZE	= 15,
+	NO_START	= 16,
+	LOAD_ASSET	= 17,
+	ASSET_ADDR	= 18,
 };
 
 int					ft_parsing_err(int err, char *param, t_program *data);
 int					ft_map_err(int err, int start, int line, char c);
+int					ft_assets_err(int err, char *path, t_program *data);
 
 /****************************************************************************/
 /*                                   Free                                   */
@@ -213,7 +217,6 @@ void				ft_free_parsing(t_program *data);
 void				end_game(t_game *game);
 
 /******************************MAP******************************/
-int					ft_create_map(t_map *map);
 void				ft_draw_minimap(t_map *map, t_game *game);
 
 /******************************EVENT******************************/

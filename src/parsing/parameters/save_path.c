@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	ft_load_assets(char **path, t_data *view, t_program *data)
+static int	ft_load_assets(char *path, t_data *view, t_program *data)
 {
 	int	weight;
 	int	height;
@@ -20,11 +20,11 @@ static int	ft_load_assets(char **path, t_data *view, t_program *data)
 	view->img = mlx_xpm_file_to_image(data->game.mlx, path,
 			&weight, &height);
 	if (!view->img)
-		return (EXIT_FAILURE); //gestion erreur
+		return (ft_assets_err(LOAD_ASSET, path, data));
 	view->addr = (int *)mlx_get_data_addr(view->img,
 		&view->bits_per_pixel, &view->line_length, &view->endian);
 	if (!view->addr)
-		return (EXIT_FAILURE); //gestion erreur
+		return (ft_assets_err(ASSET_ADDR, path, data));
 }
 
 int	ft_save_path(char *line, t_data *view, t_program *data, int *param) 

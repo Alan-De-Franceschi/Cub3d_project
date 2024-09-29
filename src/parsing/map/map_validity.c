@@ -12,7 +12,8 @@
 
 #include "cub3d.h"
 
-static int	ft_check_limits(int line, int size, int *start, char *str) {
+static int	ft_check_limits(int line, int size, int *start, char *str) 
+{
   if (line == 1 || line == size) {
     if (ft_hlimit(str, line) == EXIT_FAILURE)
       return (EXIT_FAILURE);
@@ -23,7 +24,8 @@ static int	ft_check_limits(int line, int size, int *start, char *str) {
   return (EXIT_SUCCESS);
 }
 
-int	ft_map_validity(char **array) {
+int	ft_map_validity(char **array) 
+{
   int line;
   int size;
   int start;
