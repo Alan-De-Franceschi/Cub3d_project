@@ -18,6 +18,7 @@ static int	ft_read_file(t_program *data)
 
 	while (1)
 	{
+		errno = 0;
 		line = ft_get_next_line(data->map_file, &data->err);
 		if (!line)
 		{

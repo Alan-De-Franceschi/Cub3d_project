@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-static void	ft_init_map(t_map *map)
-{
-	map->x = 0;
-	map->y = 0;
-	return ;
-}
-
 void	ft_init_ray(t_ray *ray, double planeX)
 {
 	ray->perpWallDist = 0;
@@ -58,14 +51,6 @@ static void	ft_init_player(t_player *player)
 
 int	ft_init_game(t_game *game)
 {
-	int	weight;
-	int	height;
-
-
-	// a proteger
-
-
-
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (EXIT_FAILURE);
@@ -84,5 +69,5 @@ int	ft_init_game(t_game *game)
 			&game->img.bits_per_pixel, &game->img.line_length,
 			&game->img.endian);
 	game->oldX = WEIGHT / 2;
-	return (0);
+	return (EXIT_SUCCESS);
 }

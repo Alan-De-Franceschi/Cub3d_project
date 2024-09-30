@@ -76,9 +76,9 @@ int	ft_map_err(int err, int start, int line, char c)
 
 int	ft_assets_err(int err, char *path, t_program *data)
 {
-	if (err = LOAD_ASSET)
+	if (err == LOAD_ASSET)
 		ft_printf("Error\n%s: Impossible to load asset image\n", 2, path);
-	else if (err = ASSET_ADDR)
+	else if (err == ASSET_ADDR)
 		ft_printf("Error\n%s: Impossible to save image address\n", 2, path);
 	ft_free_parsing(data);
 	return (EXIT_FAILURE);

@@ -180,9 +180,9 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
+	@rm -rf minilibx-linux
 	@echo "${COLOUR_GREEN}\nCub3d cleaned\n${COLOUR_END}"
 	@make fclean -C libft/ --no-print-directory
-	@make clean -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
 	@echo "${COLOUR_GREEN}Minilibx cleaned\n${COLOUR_END}"
 	
 

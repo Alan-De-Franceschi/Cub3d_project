@@ -18,7 +18,7 @@ void	ft_free_parsing(t_program *data)
 		close(data->map_file);
 	ft_free_strtab(data->vemap->array);
 	free(data->vemap);
-	free(data->map);
+	ft_free_strtab(data->game.map);
 	if (data->game_init)
 	{
 		mlx_destroy_window(data->game.mlx, data->game.win);

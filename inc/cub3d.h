@@ -100,13 +100,6 @@ typedef struct s_ray
 	int				res;
 }					t_ray;
 
-typedef struct s_map
-{
-	int				x;
-	int				y;
-	char			value;
-}					t_map;
-
 typedef struct s_game
 {
 	int				oldX;
@@ -118,6 +111,7 @@ typedef struct s_game
 	t_data			W;
 	t_data			S;
 	t_data			N;
+	char			**map;
 	t_data			minimap;
 	struct timeval	begin;
 	struct timeval	end;
@@ -138,8 +132,6 @@ typedef struct s_program
 	int				c;
 	int				map_file;
 	t_vector		*vemap;
-	t_map			*map;
-	int				map_size;
 	int				nb_line;
 	int				nb_column;
 	int				start_x;
@@ -173,7 +165,7 @@ int					ft_save_colors(char *line, int *colors, t_program *data,
 int					ft_read_map(char *line, t_vector *vector, t_program *data);
 int					ft_parse_map(t_vector *vector, t_program *data);
 int					ft_map_validity(char **array);
-void				ft_fill_map(char **array, t_program *data, int line_len);
+int				ft_fill_map(char **array, t_program *data, int line_len, int nb_line);
 /*Parsing utils*/
 int					ft_max_len(char **array);
 int					ft_count_dot(char **array);
