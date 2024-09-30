@@ -132,6 +132,7 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_PLAYER:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_CLEAR_IMAGE:.c=.o}) \
 					$(addprefix ${OBJECTS_PATH}, ${SOURCES_DRAWING:.c=.o}) \
+					$(addprefix ${OBJECTS_PATH}, ${SOURCES_EVENT:.c=.o}) \
 
 # **************************************************************************** #
 #                                                                              #

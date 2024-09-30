@@ -49,19 +49,19 @@ static void	ft_move_player(t_game *game, double delta_time)
 {
 	if (game->player.up == true)
 	{
-		ft_move_up(game->map.map, &game->player, delta_time);
+		ft_move_up(game->map, &game->player, delta_time);
 	}
 	if (game->player.down == true)
 	{
-		ft_move_down(game->map.map, &game->player, delta_time);
+		ft_move_down(game->map, &game->player, delta_time);
 	}
 	if (game->player.a == true)
 	{
-		ft_move_left(game->map.map, &game->player, delta_time);
+		ft_move_left(game->map, &game->player, delta_time);
 	}
 	if (game->player.d == true)
 	{
-		ft_move_right(game->map.map, &game->player, delta_time);
+		ft_move_right(game->map, &game->player, delta_time);
 	}
 	if (game->player.strafe_left == true)
 	{
@@ -74,28 +74,28 @@ static void	ft_move_player(t_game *game, double delta_time)
 	return ;
 }
 
-int	ft_update_player_position(t_game *game)
+int	ft_update_player_position(t_program *data)
 {
 	double	delta_time;
 	double	old_x;
 	double	old_y;
 	float	old_angle;
 
-	old_x = game->player.position.x;
-	old_y = game->player.position.y;
-	old_angle = game->player.angle;
-	game->end = ft_get_current_time();
-	delta_time = ft_get_time_in_millisecond(&game->end)
-		- ft_get_time_in_millisecond(&game->begin);
-	ft_move_player(game, delta_time);
-	if (BONUS)
+	old_x = data->game.player.position.x;
+	old_y = data->game.player.position.y;
+	old_angle = data->game.player.angle;
+	data->game.end = ft_get_current_time();
+	delta_time = ft_get_time_in_millisecond(&data->game.end)
+		- ft_get_time_in_millisecond(&data->game.begin);
+	ft_move_player(&data->game, delta_time);
+	if (data->bonus)
 	{
-		ft_mouse_move(game);
+		ft_mouse_move(&data->game);
 	}
-	if (old_x != game->player.position.x || old_y != game->player.position.y
-		|| old_angle != game->player.angle)
+	if (old_x != data->game.player.position.x || old_y != data->game.player.position.y
+		|| old_angle != data->game.player.angle)
 	{
-		return (mlx_clear_window(game->mlx, game->win), 1);
+		return (mlx_clear_window(data->game.mlx, data->game.win), 1);
 	}
 	return (0);
 }

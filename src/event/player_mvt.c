@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	ft_move_up(int map[15][20], t_player *player, double delta_time)
+void	ft_move_up(char **map, t_player *player, double delta_time)
 {
 	float	new_x;
 	float	new_y;
@@ -38,7 +38,7 @@ void	ft_move_up(int map[15][20], t_player *player, double delta_time)
 	}
 }
 
-void	ft_move_down(int map[15][20], t_player *player, double delta_time)
+void	ft_move_down(char **map, t_player *player, double delta_time)
 {
 	float	new_x;
 	float	new_y;
@@ -65,7 +65,7 @@ void	ft_move_down(int map[15][20], t_player *player, double delta_time)
 	}
 }
 
-void	ft_move_left(int map[15][20], t_player *player, double delta_time)
+void	ft_move_left(char **map, t_player *player, double delta_time)
 {
 	float	new_x;
 	float	new_y;
@@ -94,7 +94,7 @@ void	ft_move_left(int map[15][20], t_player *player, double delta_time)
 	}
 }
 
-void	ft_move_right(int map[15][20], t_player *player, double delta_time)
+void	ft_move_right(char **map, t_player *player, double delta_time)
 {
 	float	new_x;
 	float	new_y;

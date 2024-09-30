@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include <cub3d.h>
 
-static void	ft_check_for_map_limits(t_minimap *minimap)
+static void	ft_check_for_map_limits(t_minimap *minimap, t_program data)
 {
 	if (minimap->start_x < 0)
 	{
@@ -23,31 +23,31 @@ static void	ft_check_for_map_limits(t_minimap *minimap)
 		minimap->end_y += abs(minimap->start_y);
 		minimap->start_y = 0;
 	}
-	if (minimap->end_x > CASE_X)
+	if (minimap->end_x > data.nb_line)
 	{
-		minimap->start_x -= minimap->end_x - CASE_X;
+		minimap->start_x -= minimap->end_x - data.nb_line;
 		if (minimap->start_x < 0)
 			minimap->start_x = 0;
-		minimap->end_x = CASE_X;
+		minimap->end_x = data.nb_line;
 	}
-	if (minimap->end_y > CASE_Y)
+	if (minimap->end_y > data.nb_column)
 	{
-		minimap->start_y -= minimap->end_y - CASE_Y;
+		minimap->start_y -= minimap->end_y - data.nb_column;
 		if (minimap->start_y < 0)
 			minimap->start_y = 0;
-		minimap->end_y = CASE_Y;
+		minimap->end_y = data.nb_column;
 	}
 	return ;
 }
 
-static void	ft_init_minimap(t_minimap *minimap, t_game game)
+static void	ft_init_minimap(t_minimap *minimap, t_program data)
 {
 	minimap->scale = 25;
-	minimap->start_x = (int)game.player.position.x - 4;
-	minimap->start_y = (int)game.player.position.y - 4;
-	minimap->end_x = (int)game.player.position.x + 4;
-	minimap->end_y = (int)game.player.position.y + 4;
-	ft_check_for_map_limits(minimap);
+	minimap->start_x = (int)data.game.player.position.x - 4;
+	minimap->start_y = (int)data.game.player.position.y - 4;
+	minimap->end_x = (int)data.game.player.position.x + 4;
+	minimap->end_y = (int)data.game.player.position.y + 4;
+	ft_check_for_map_limits(minimap, data);
 	return ;
 }
 
@@ -99,13 +99,13 @@ static void	ft_draw_minimap_floor(t_minimap minimap, t_game *game, int x, int y)
 	return ;
 }
 
-void	ft_draw_minimap(t_map *map, t_game *game)
+void	ft_draw_minimap(t_program *data)
 {
 	t_minimap	minimap;
 	int			y;
 	int			x;
 
-	ft_init_minimap(&minimap, *game);
+	ft_init_minimap(&minimap, *data);
 	y = minimap.start_y;
 	while (y < minimap.end_y)
 	{
@@ -114,13 +114,13 @@ void	ft_draw_minimap(t_map *map, t_game *game)
 		{
 			minimap.minimapX = minimap.scale * (x - minimap.start_x);
 			minimap.minimapY = minimap.scale * (y - minimap.start_y);
-			if (map->map[y][x])
+			if (data->game.map[y][x])
 			{
-				ft_draw_minimap_wall(minimap, &game->minimap);
+				ft_draw_minimap_wall(minimap, &data->game.minimap);
 			}
 			else
 			{
-				ft_draw_minimap_floor(minimap, game, x, y);
+				ft_draw_minimap_floor(minimap, &data->game, x, y);
 			}
 			x++;
 		}

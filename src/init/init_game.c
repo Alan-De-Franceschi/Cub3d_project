@@ -47,8 +47,6 @@ static void	ft_init_player(t_player *player)
 	return ;
 }
 
-
-
 int	ft_init_game(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -69,5 +67,7 @@ int	ft_init_game(t_game *game)
 			&game->img.bits_per_pixel, &game->img.line_length,
 			&game->img.endian);
 	game->oldX = WEIGHT / 2;
+	game->x = 0;
+	game->y = 0;
 	return (EXIT_SUCCESS);
 }

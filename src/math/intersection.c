@@ -24,27 +24,27 @@ t_point	ft_get_distance_for_next_intersection(t_point direction)
 
 void	ft_get_first_intersection_coordinates(t_ray *ray, t_game *game)
 {
-	game->map.x = (int)ray->vecRay.x;
-	game->map.y = (int)ray->vecRay.y;
+	game->x = (int)ray->vecRay.x;
+	game->y = (int)ray->vecRay.y;
 	if (ray->direction.x < 0)
 	{
 		ray->stepX = -1;
-		ray->interX = (ray->vecRay.x - game->map.x) * ray->UnitStep.x;
+		ray->interX = (ray->vecRay.x - game->x) * ray->UnitStep.x;
 	}
 	else
 	{
 		ray->stepX = 1;
-		ray->interX = (game->map.x + 1 - ray->vecRay.x) * ray->UnitStep.x;
+		ray->interX = (game->x + 1 - ray->vecRay.x) * ray->UnitStep.x;
 	}
 	if (ray->direction.y < 0)
 	{
 		ray->stepY = -1;
-		ray->interY = (ray->vecRay.y - game->map.y) * ray->UnitStep.y;
+		ray->interY = (ray->vecRay.y - game->y) * ray->UnitStep.y;
 	}
 	else
 	{
 		ray->stepY = 1;
-		ray->interY = (game->map.y + 1 - ray->vecRay.y) * ray->UnitStep.y;
+		ray->interY = (game->y + 1 - ray->vecRay.y) * ray->UnitStep.y;
 	}
 	return ;
 }

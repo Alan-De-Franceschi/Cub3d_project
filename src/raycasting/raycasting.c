@@ -25,15 +25,15 @@ static void	ft_get_x_point_of_impact(t_ray *ray)
 	return ;
 }
 
-int	ft_raycasting(t_game *game)
+int	ft_raycasting(t_program *data)
 {
-	game->begin = ft_get_current_time();
-	ft_clear_image(game->img.addr, WEIGHT, HEIGHT);
-	ft_raycast(game);
-	if (BONUS)
+	data->game.begin = ft_get_current_time();
+	ft_clear_image(data->game.img.addr, WEIGHT, HEIGHT);
+	ft_raycast(data);
+	if (data->bonus)
 	{
-		ft_clear_image(game->minimap.addr, 200, 200);
-		ft_minimap(game);
+		ft_clear_image(data->game.minimap.addr, 200, 200);
+		ft_minimap(data);
 	}
 	return (0);
 }
@@ -64,7 +64,7 @@ void	ft_first_raycast(t_game *game)
 	return ;
 }
 
-int	ft_raycast(t_game *game)
+int	ft_raycast(t_program *data)
 {
 	t_ray	ray;
 	int		x;
@@ -72,23 +72,23 @@ int	ft_raycast(t_game *game)
 
 	i = 0;
 	x = WEIGHT;
-	ft_init_ray(&ray, (*game).player.planeX);
-	if (ft_update_player_position(game))
+	ft_init_ray(&ray, (*data).game.player.planeX);
+	if (ft_update_player_position(data))
 	{
-		while (i < game->player.planeX)
+		while (i < data->game.player.planeX)
 		{
-			ft_set_ray_position(&ray.vecRay, &ray.direction, &game->player, i);
-			ft_get_player_dir(game);
+			ft_set_ray_position(&ray.vecRay, &ray.direction, &data->game.player, i);
+			ft_get_player_dir(&data->game);
 			ray.UnitStep = ft_get_distance_for_next_intersection(ray.direction);
-			ft_get_first_intersection_coordinates(&ray, game);
-			ft_find_nearest_wall(&ray, game);
+			ft_get_first_intersection_coordinates(&ray, &data->game);
+			ft_find_nearest_wall(&ray, &data->game);
 			ft_get_x_point_of_impact(&ray);
-			ft_get_wall_info(&ray, *game, i);
-			x -= WEIGHT / game->player.planeX;
-			ft_draw_player_viewpoint(ray, game, x);
+			ft_get_wall_info(&ray, (*data).game, i);
+			x -= WEIGHT / data->game.player.planeX;
+			ft_draw_player_viewpoint(ray, &data->game, x);
 			i++;
 		}
-		mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+		mlx_put_image_to_window(data->game.mlx, data->game.win, data->game.img.img, 0, 0);
 	}
 	return (0);
 }

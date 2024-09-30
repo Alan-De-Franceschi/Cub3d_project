@@ -38,6 +38,11 @@
 # define ANGLE_SPEED 0.004
 # define WEIGHT 640
 # define HEIGHT 640
+# define RED 0x00FF0000
+# define BLUE 0x0053F0FF
+# define GREEN 0x0000FF00
+# define WHITE 0xFFFFFFFF
+# define GREY 0x00C0C0C0
 
 /****************************************************************************/
 /*                              Structures                                  */
@@ -51,6 +56,17 @@ typedef struct s_data
 	int				line_length;
 	int				endian;
 }					t_data;
+
+typedef struct s_minimap
+{
+	int				scale;
+	int				minimapX;
+	int				minimapY;
+	int				start_x;
+	int				start_y;
+	int				end_x;
+	int				end_y;
+}					t_minimap;
 
 typedef struct s_point
 {
@@ -103,6 +119,8 @@ typedef struct s_ray
 typedef struct s_game
 {
 	int				oldX;
+	int				x;
+	int				y;
 	void			*mlx;
 	void			*win;
 	t_player		player;
@@ -165,7 +183,8 @@ int					ft_save_colors(char *line, int *colors, t_program *data,
 int					ft_read_map(char *line, t_vector *vector, t_program *data);
 int					ft_parse_map(t_vector *vector, t_program *data);
 int					ft_map_validity(char **array);
-int				ft_fill_map(char **array, t_program *data, int line_len, int nb_line);
+int					ft_fill_map(char **array, t_program *data, int line_len,
+						int nb_line);
 /*Parsing utils*/
 int					ft_max_len(char **array);
 int					ft_count_dot(char **array);
@@ -178,23 +197,23 @@ int					ft_vlimit(char *str, int line, int *start);
 
 enum				e_errors
 {
-	FILE_ERR	= 2,
-	FEW_ARGS	= 3,
-	MANY_ARGS	= 4,
-	OPEN_ERR	= 5,
-	GNL_ERR		= 6,
-	W_PARAM		= 7,
-	SPLIT_MEM	= 8,
-	MEM_ERR		= 9,
-	PATH_ERR	= 10,
-	ATOI_ERR	= 11,
-	TAB_ERR		= 12,
-	INV_CHAR	= 13,
-	NOT_CLOSED	= 14,
-	MAP_SIZE	= 15,
-	NO_START	= 16,
-	LOAD_ASSET	= 17,
-	ASSET_ADDR	= 18,
+	FILE_ERR = 2,
+	FEW_ARGS = 3,
+	MANY_ARGS = 4,
+	OPEN_ERR = 5,
+	GNL_ERR = 6,
+	W_PARAM = 7,
+	SPLIT_MEM = 8,
+	MEM_ERR = 9,
+	PATH_ERR = 10,
+	ATOI_ERR = 11,
+	TAB_ERR = 12,
+	INV_CHAR = 13,
+	NOT_CLOSED = 14,
+	MAP_SIZE = 15,
+	NO_START = 16,
+	LOAD_ASSET = 17,
+	ASSET_ADDR = 18,
 };
 
 int					ft_parsing_err(int err, char *param, t_program *data);
@@ -209,30 +228,31 @@ void				ft_free_parsing(t_program *data);
 void				end_game(t_game *game);
 
 /******************************MAP******************************/
-void				ft_draw_minimap(t_map *map, t_game *game);
+void				ft_draw_minimap(t_program *data);
+void				ft_minimap(t_program *data);
 
 /******************************EVENT******************************/
 int					ft_on_key_press(int keycode, t_game *game);
 int					ft_on_key_release(int keycode, t_player *player);
-void				ft_move_up(int map[15][20], t_player *player,
+void				ft_move_up(char **map, t_player *player,
 						double delta_time);
-void				ft_move_down(int map[15][20], t_player *player,
+void				ft_move_down(char **map, t_player *player,
 						double delta_time);
-void				ft_move_left(int map[15][20], t_player *player,
+void				ft_move_left(char **map, t_player *player,
 						double delta_time);
-void				ft_move_right(int map[15][20], t_player *player,
+void				ft_move_right(char **map, t_player *player,
 						double delta_time);
 void				ft_event_handler(t_game *game);
 
 /******************************PLAYER******************************/
-int					ft_update_player_position(t_game *game);
+int					ft_update_player_position(t_program *data);
 void				ft_get_player_dir(t_game *game);
 
 /******************************RAYCASTING******************************/
-int					ft_raycasting(t_game *game);
+int					ft_raycasting(t_program *data);
 void				ft_set_ray_position(t_point *vecRay, t_point *direction,
 						t_player *player, int i);
-int					ft_raycast(t_game *game);
+int					ft_raycast(t_program *data);
 void				ft_first_raycast(t_game *game);
 
 /******************************MATH******************************/
@@ -258,9 +278,6 @@ double				ft_get_time_in_millisecond(struct timeval *time);
 
 /******************************CLEAR_IMAGE******************************/
 void				ft_clear_image(int *addr, int weight, int height);
-
-/******************************MINIMAP******************************/
-void				ft_minimap(t_game *game);
 
 /******************************MOUVE******************************/
 int					ft_mouse_move(t_game *game);

@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	ft_minimap(t_game *game)
+void	ft_minimap(t_program *data)
 {
-	ft_draw_minimap(&game->map, game);
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
+	ft_draw_minimap(data);
+	mlx_put_image_to_window(data->game.mlx, data->game.win, data->game.minimap.img, 0, 0);
 	return ;
 }
