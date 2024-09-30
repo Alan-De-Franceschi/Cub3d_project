@@ -164,7 +164,7 @@ typedef struct s_program
 /****************************************************************************/
 
 int					ft_init_data(t_program *data);
-int					ft_init_game(t_game *game);
+int					ft_init_game(t_program *data);
 void				ft_init_ray(t_ray *ray, double planeX);
 
 /****************************************************************************/

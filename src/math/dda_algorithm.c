@@ -27,7 +27,7 @@ void	ft_find_nearest_wall(t_ray *ray, t_game *game)
 			ray->interY += ray->UnitStep.y;
 			ray->side = 1;
 		}
-		if (game->map[game->y][game->x] == 1)
+		if (game->map[game->y][game->x] == '1')
 		{
 			break ;
 		}

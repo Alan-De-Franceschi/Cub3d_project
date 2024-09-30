@@ -28,9 +28,8 @@ static void	ft_get_x_point_of_impact(t_ray *ray)
 int	ft_raycasting(t_program *data)
 {
 	data->game.begin = ft_get_current_time();
-	ft_clear_image(data->game.img.addr, WEIGHT, HEIGHT);
 	ft_raycast(data);
-	if (data->bonus)
+	if (data->bonus == 1)
 	{
 		ft_clear_image(data->game.minimap.addr, 200, 200);
 		ft_minimap(data);
@@ -75,6 +74,7 @@ int	ft_raycast(t_program *data)
 	ft_init_ray(&ray, (*data).game.player.planeX);
 	if (ft_update_player_position(data))
 	{
+		ft_clear_image(data->game.img.addr, WEIGHT, HEIGHT);
 		while (i < data->game.player.planeX)
 		{
 			ft_set_ray_position(&ray.vecRay, &ray.direction, &data->game.player, i);

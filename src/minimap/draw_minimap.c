@@ -114,7 +114,7 @@ void	ft_draw_minimap(t_program *data)
 		{
 			minimap.minimapX = minimap.scale * (x - minimap.start_x);
 			minimap.minimapY = minimap.scale * (y - minimap.start_y);
-			if (data->game.map[y][x])
+			if ((int)ft_strlen(data->game.map[y]) > x && data->game.map[y][x] == '1')
 			{
 				ft_draw_minimap_wall(minimap, &data->game.minimap);
 			}

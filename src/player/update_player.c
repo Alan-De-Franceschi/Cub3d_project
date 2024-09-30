@@ -88,7 +88,7 @@ int	ft_update_player_position(t_program *data)
 	delta_time = ft_get_time_in_millisecond(&data->game.end)
 		- ft_get_time_in_millisecond(&data->game.begin);
 	ft_move_player(&data->game, delta_time);
-	if (data->bonus)
+	if (data->bonus == 1)
 	{
 		ft_mouse_move(&data->game);
 	}
