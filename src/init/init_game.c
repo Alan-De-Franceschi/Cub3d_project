@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-static void	ft_init_map(t_map *map)
-{
-	map->x = 0;
-	map->y = 0;
-	return ;
-}
-
 void	ft_init_ray(t_ray *ray, double planeX)
 {
 	ray->perpWallDist = 0;
@@ -56,33 +49,27 @@ static void	ft_init_player(t_player *player)
 
 
 
-int	ft_init_game(t_game *game)
+int	ft_init_game(t_program *data)
 {
-	int	weight;
-	int	height;
-
-
 	// a proteger
 
-
-
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
+	data->game.mlx = mlx_init();
+	if (data->game.mlx == NULL)
 		return (EXIT_FAILURE);
-	game->win = mlx_new_window(game->mlx, WEIGHT, HEIGHT, "Cub3d");
-	if (game->win == NULL)
-		return (free(game->mlx), EXIT_FAILURE);
-	ft_init_player(&game->player);
-	game->minimap.img = mlx_new_image(game->mlx, 200, 200);
-	if (game->minimap.img == NULL)
-		return (free(game->mlx), free(game->win), 1);
-	game->minimap.addr = (int *)mlx_get_data_addr(game->minimap.img,
-			&game->minimap.bits_per_pixel, &game->minimap.line_length,
-			&game->minimap.endian);
-	game->img.img = mlx_new_image(game->mlx, WEIGHT, HEIGHT);
-	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
-			&game->img.bits_per_pixel, &game->img.line_length,
-			&game->img.endian);
-	game->oldX = WEIGHT / 2;
+	data->game.win = mlx_new_window(data->game.mlx, WEIGHT, HEIGHT, "Cub3d");
+	if (data->game.win == NULL)
+		return (free(data->game.mlx), EXIT_FAILURE);
+	ft_init_player(&data->game.player);
+	data->game.minimap.img = mlx_new_image(data->game.mlx, 200, 200);
+	if (data->game.minimap.img == NULL)
+		return (free(data->game.mlx), free(data->game.win), 1);
+	data->game.minimap.addr = (int *)mlx_get_data_addr(data->game.minimap.img,
+			&data->game.minimap.bits_per_pixel, &data->game.minimap.line_length,
+			&data->game.minimap.endian);
+	data->game.img.img = mlx_new_image(data->game.mlx, WEIGHT, HEIGHT);
+	data->game.img.addr = (int *)mlx_get_data_addr(data->game.img.img,
+			&data->game.img.bits_per_pixel, &data->game.img.line_length,
+			&data->game.img.endian);
+	data->game.oldX = WEIGHT / 2;
 	return (0);
 }

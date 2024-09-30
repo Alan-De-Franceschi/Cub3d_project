@@ -25,6 +25,7 @@ static int	ft_load_assets(char *path, t_data *view, t_program *data)
 		&view->bits_per_pixel, &view->line_length, &view->endian);
 	if (!view->addr)
 		return (ft_assets_err(ASSET_ADDR, path, data));
+	return (EXIT_SUCCESS);
 }
 
 int	ft_save_path(char *line, t_data *view, t_program *data, int *param) 
@@ -36,7 +37,7 @@ int	ft_save_path(char *line, t_data *view, t_program *data, int *param)
     return (ft_parsing_err(SPLIT_MEM, NULL, data));
   if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0) 
   {
-    if (ft_load_assets(split[1], view, data) == EXIT_FAILURE);
+    if (ft_load_assets(split[1], view, data) == EXIT_FAILURE)
 		return(ft_free_strtab(split), EXIT_FAILURE);
     ++data->parameters;
   } 

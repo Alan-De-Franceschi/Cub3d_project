@@ -33,8 +33,6 @@ int	ft_init_data(t_program *data)
 	data->vemap = ft_vinit();
 	if (!data->vemap)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
-	if (ft_init_game(&data->game) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
 	data->game_init = 1;
 	return (EXIT_SUCCESS);
 }

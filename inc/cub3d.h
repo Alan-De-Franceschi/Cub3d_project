@@ -38,6 +38,11 @@
 # define ANGLE_SPEED 0.004
 # define WEIGHT 640
 # define HEIGHT 640
+# define RED 0x00FF0000
+# define BLUE 0x0053F0FF
+# define GREEN 0x0000FF00
+# define WHITE 0xFFFFFFFF
+# define GREY 0x00C0C0C0
 
 /****************************************************************************/
 /*                              Structures                                  */
@@ -51,6 +56,17 @@ typedef struct s_data
 	int				line_length;
 	int				endian;
 }					t_data;
+
+typedef struct s_minimap
+{
+	int				scale;
+	int				minimapX;
+	int				minimapY;
+	int				start_x;
+	int				start_y;
+	int				end_x;
+	int				end_y;
+}					t_minimap;
 
 typedef struct s_point
 {
@@ -119,6 +135,8 @@ typedef struct s_game
 	t_data			S;
 	t_data			N;
 	t_data			minimap;
+	t_vector		*vmap;
+	t_map			*map;
 	struct timeval	begin;
 	struct timeval	end;
 }					t_game;
@@ -154,7 +172,7 @@ typedef struct s_program
 /****************************************************************************/
 
 int					ft_init_data(t_program *data);
-int					ft_init_game(t_game *game);
+int					ft_init_game(t_program *data);
 void				ft_init_ray(t_ray *ray, double planeX);
 
 /****************************************************************************/
@@ -214,13 +232,14 @@ int					ft_assets_err(int err, char *path, t_program *data);
 /****************************************************************************/
 
 void				ft_free_parsing(t_program *data);
-void				end_game(t_game *game);
+void				end_game(t_program *data);
 
 /******************************MAP******************************/
-void				ft_draw_minimap(t_map *map, t_game *game);
+int					ft_create_map(t_map *map);
+void				ft_draw_minimap(t_vector *vmap, t_game *game);
 
 /******************************EVENT******************************/
-int					ft_on_key_press(int keycode, t_game *game);
+int					ft_on_key_press(int keycode, t_program *data);
 int					ft_on_key_release(int keycode, t_player *player);
 void				ft_move_up(int map[15][20], t_player *player,
 						double delta_time);
@@ -230,14 +249,14 @@ void				ft_move_left(int map[15][20], t_player *player,
 						double delta_time);
 void				ft_move_right(int map[15][20], t_player *player,
 						double delta_time);
-void				ft_event_handler(t_game *game);
+void				ft_event_handler(t_program *data);
 
 /******************************PLAYER******************************/
 int					ft_update_player_position(t_game *game);
 void				ft_get_player_dir(t_game *game);
 
 /******************************RAYCASTING******************************/
-int					ft_raycasting(t_game *game);
+int					ft_raycasting(t_program *data);
 void				ft_set_ray_position(t_point *vecRay, t_point *direction,
 						t_player *player, int i);
 int					ft_raycast(t_game *game);

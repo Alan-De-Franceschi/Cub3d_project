@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-int	ft_on_key_press(int keycode, t_game *game)
+int	ft_on_key_press(int keycode, t_program *data)
 {
 	if (keycode == XK_Escape)
-		end_game(game);
+		end_game(data);
 	if (keycode == XK_w)
 		game->player.up = true;
 	if (keycode == XK_Left)

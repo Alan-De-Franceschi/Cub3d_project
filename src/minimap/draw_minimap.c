@@ -99,7 +99,7 @@ static void	ft_draw_minimap_floor(t_minimap minimap, t_game *game, int x, int y)
 	return ;
 }
 
-void	ft_draw_minimap(t_map *map, t_game *game)
+void	ft_draw_minimap(t_vector *vmap, t_game *game)
 {
 	t_minimap	minimap;
 	int			y;
@@ -114,7 +114,7 @@ void	ft_draw_minimap(t_map *map, t_game *game)
 		{
 			minimap.minimapX = minimap.scale * (x - minimap.start_x);
 			minimap.minimapY = minimap.scale * (y - minimap.start_y);
-			if (map->map[y][x])
+			if (vmap->array[y][x])
 			{
 				ft_draw_minimap_wall(minimap, &game->minimap);
 			}

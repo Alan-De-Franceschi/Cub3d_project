@@ -13,7 +13,7 @@
 
 void	ft_minimap(t_game *game)
 {
-	ft_draw_minimap(&game->map, game);
+	ft_draw_minimap(&game->vmap, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
 	return ;
 }

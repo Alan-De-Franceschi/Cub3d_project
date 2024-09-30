@@ -11,16 +11,17 @@
 /* ************************************************************************** */
 #include <cub3d.h>
 
-void	end_game(t_game *game)
+void	end_game(t_program *data)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_image(game->mlx, game->img.img);
-	mlx_destroy_image(game->mlx, game->minimap.img);
-	mlx_destroy_image(game->mlx, game->E.img);
-	mlx_destroy_image(game->mlx, game->W.img);
-	mlx_destroy_image(game->mlx, game->S.img);
-	mlx_destroy_image(game->mlx, game->N.img);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	mlx_destroy_window(&data->game.mlx, &data->game.win);
+	mlx_destroy_image(&data->game.mlx, &data->game.img.img);
+	mlx_destroy_image(&data->game.mlx, &data->game.minimap.img);
+	mlx_destroy_image(&data->game.mlx, &data->game.E.img);
+	mlx_destroy_image(&data->game.mlx, &data->game.W.img);
+	mlx_destroy_image(&data->game.mlx, &data->game.S.img);
+	mlx_destroy_image(&data->game.mlx, &data->game.N.img);
+	mlx_destroy_display(&data->game.mlx);
+	free(data->game.mlx);
+	ft_free_parsing(data);
 	exit(0);
 }
