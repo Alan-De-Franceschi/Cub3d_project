@@ -15,25 +15,25 @@ void	ft_draw_floor_and_celling(t_ray ray, t_game *game, int x)
 {
 	int	k;
 
-	while (ray.floorBegin < HEIGHT)
+	while (ray.floor_begin < HEIGHT)
 	{
 		k = 0;
 		while (k < ray.res)
 		{
-			draw(&game->img, x + k, ray.floorBegin, WHITE);
+			draw(&game->img, x + k, ray.floor_begin, WHITE);
 			k++;
 		}
-		ray.floorBegin++;
+		ray.floor_begin++;
 	}
-	while (ray.cellingBegin > 0)
+	while (ray.celling_begin > 0)
 	{
 		k = 0;
 		while (k < ray.res)
 		{
-			draw(&game->img, x + k, ray.cellingBegin, BLUE);
+			draw(&game->img, x + k, ray.celling_begin, BLUE);
 			k++;
 		}
-		ray.cellingBegin--;
+		ray.celling_begin--;
 	}
 	return ;
 }

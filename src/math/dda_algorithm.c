@@ -15,16 +15,16 @@ void	ft_find_nearest_wall(t_ray *ray, t_game *game)
 {
 	while (1)
 	{
-		if (ray->interX < ray->interY)
+		if (ray->inter_x < ray->inter_y)
 		{
-			game->x += ray->stepX;
-			ray->interX += ray->UnitStep.x;
+			game->x += ray->step_x;
+			ray->inter_x += ray->unit_step.x;
 			ray->side = 0;
 		}
 		else
 		{
-			game->y += ray->stepY;
-			ray->interY += ray->UnitStep.y;
+			game->y += ray->step_y;
+			ray->inter_y += ray->unit_step.y;
 			ray->side = 1;
 		}
 		if (game->map[game->y][game->x] == '1')

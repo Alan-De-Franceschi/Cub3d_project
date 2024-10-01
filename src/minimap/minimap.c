@@ -14,6 +14,7 @@
 void	ft_minimap(t_program *data)
 {
 	ft_draw_minimap(data);
-	mlx_put_image_to_window(data->game.mlx, data->game.win, data->game.minimap.img, 0, 0);
+	mlx_put_image_to_window(data->game.mlx, data->game.win,
+		data->game.minimap.img, 0, 0);
 	return ;
 }

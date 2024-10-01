@@ -15,11 +15,11 @@ static void	ft_rotate_left(t_player *player, double delta_time)
 {
 	if (delta_time != 0)
 	{
-		player->angle -= player->speedMove * ANGLE_SPEED * delta_time;
+		player->angle -= player->speed_move * ANGLE_SPEED * delta_time;
 	}
 	else
 	{
-		player->angle -= player->speedMove * ANGLE_SPEED;
+		player->angle -= player->speed_move * ANGLE_SPEED;
 	}
 	if (player->angle < 0)
 	{
@@ -32,11 +32,11 @@ static void	ft_rotate_right(t_player *player, double delta_time)
 {
 	if (delta_time != 0)
 	{
-		player->angle += player->speedMove * ANGLE_SPEED * delta_time;
+		player->angle += player->speed_move * ANGLE_SPEED * delta_time;
 	}
 	else
 	{
-		player->angle += player->speedMove * ANGLE_SPEED;
+		player->angle += player->speed_move * ANGLE_SPEED;
 	}
 	if (player->angle > 360)
 	{
@@ -74,28 +74,28 @@ static void	ft_move_player(t_game *game, double delta_time)
 	return ;
 }
 
-int	ft_update_player_position(t_program *data)
+int	ft_update_player_position(t_game *game)
 {
 	double	delta_time;
 	double	old_x;
 	double	old_y;
 	float	old_angle;
 
-	old_x = data->game.player.position.x;
-	old_y = data->game.player.position.y;
-	old_angle = data->game.player.angle;
-	data->game.end = ft_get_current_time();
-	delta_time = ft_get_time_in_millisecond(&data->game.end)
-		- ft_get_time_in_millisecond(&data->game.begin);
-	ft_move_player(&data->game, delta_time);
-	if (data->bonus == 1)
+	old_x = game->player.position.x;
+	old_y = game->player.position.y;
+	old_angle = game->player.angle;
+	game->end = ft_get_current_time();
+	delta_time = ft_get_time_in_millisecond(&game->end)
+		- ft_get_time_in_millisecond(&game->begin);
+	ft_move_player(game, delta_time);
+	if (game->bonus == 1)
 	{
-		ft_mouse_move(&data->game);
+		ft_mouse_move(game);
 	}
-	if (old_x != data->game.player.position.x || old_y != data->game.player.position.y
-		|| old_angle != data->game.player.angle)
+	if (old_x != game->player.position.x || old_y != game->player.position.y
+		|| old_angle != game->player.angle)
 	{
-		return (mlx_clear_window(data->game.mlx, data->game.win), 1);
+		return (mlx_clear_window(game->mlx, game->win), 1);
 	}
 	return (0);
 }

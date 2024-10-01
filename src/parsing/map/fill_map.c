@@ -24,9 +24,9 @@ static void	ft_check_start(char c, int x, int y, t_program *data)
 
 int	ft_fill_map(char **array, t_program *data, int line_len, int nb_line)
 {
-	int	y;
-	int	x;
-	char *str;
+	int		y;
+	int		x;
+	char	*str;
 
 	y = 0;
 	while (y < nb_line)

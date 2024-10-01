@@ -23,19 +23,19 @@ static void	ft_check_for_map_limits(t_minimap *minimap, t_program data)
 		minimap->end_y += abs(minimap->start_y);
 		minimap->start_y = 0;
 	}
-	if (minimap->end_x > data.nb_line)
+	if (minimap->end_x > data.nb_column)
 	{
-		minimap->start_x -= minimap->end_x - data.nb_line;
+		minimap->start_x -= minimap->end_x - data.nb_column;
 		if (minimap->start_x < 0)
 			minimap->start_x = 0;
-		minimap->end_x = data.nb_line;
+		minimap->end_x = data.nb_column;
 	}
-	if (minimap->end_y > data.nb_column)
+	if (minimap->end_y > data.nb_line)
 	{
-		minimap->start_y -= minimap->end_y - data.nb_column;
+		minimap->start_y -= minimap->end_y - data.nb_line;
 		if (minimap->start_y < 0)
 			minimap->start_y = 0;
-		minimap->end_y = data.nb_column;
+		minimap->end_y = data.nb_line;
 	}
 	return ;
 }
@@ -62,7 +62,7 @@ static void	ft_draw_minimap_wall(t_minimap minimap, t_data *img)
 		i = 0;
 		while (i < minimap.scale - 1)
 		{
-			draw(img, minimap.minimapX + i, minimap.minimapY + k, WHITE);
+			draw(img, minimap.minimap_x + i, minimap.minimap_y + k, WHITE);
 			i++;
 		}
 		k++;
@@ -84,13 +84,13 @@ static void	ft_draw_minimap_floor(t_minimap minimap, t_game *game, int x, int y)
 			if (x == (int)game->player.position.x
 				&& y == (int)game->player.position.y)
 			{
-				draw(&game->minimap, minimap.minimapX + i, minimap.minimapY + k,
-					GREEN);
+				draw(&game->minimap, minimap.minimap_x + i, minimap.minimap_y
+					+ k, GREEN);
 			}
 			else
 			{
-				draw(&game->minimap, minimap.minimapX + i, minimap.minimapY + k,
-					GREY);
+				draw(&game->minimap, minimap.minimap_x + i, minimap.minimap_y
+					+ k, GREY);
 			}
 			i++;
 		}
@@ -112,9 +112,9 @@ void	ft_draw_minimap(t_program *data)
 		x = minimap.start_x;
 		while (x < minimap.end_x)
 		{
-			minimap.minimapX = minimap.scale * (x - minimap.start_x);
-			minimap.minimapY = minimap.scale * (y - minimap.start_y);
-			if ((int)ft_strlen(data->game.map[y]) > x && data->game.map[y][x] == '1')
+			minimap.minimap_x = minimap.scale * (x - minimap.start_x);
+			minimap.minimap_y = minimap.scale * (y - minimap.start_y);
+			if (data->game.map[y][x] == '1')
 			{
 				ft_draw_minimap_wall(minimap, &data->game.minimap);
 			}

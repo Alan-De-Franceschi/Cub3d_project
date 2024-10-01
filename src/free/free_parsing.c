@@ -19,6 +19,10 @@ void	ft_free_parsing(t_program *data)
 	ft_free_strtab(data->vemap->array);
 	free(data->vemap);
 	ft_free_strtab(data->game.map);
+	mlx_destroy_image(data->game.mlx, data->game.n.img);
+	mlx_destroy_image(data->game.mlx, data->game.s.img);
+	mlx_destroy_image(data->game.mlx, data->game.e.img);
+	mlx_destroy_image(data->game.mlx, data->game.w.img);
 	if (data->game_init)
 	{
 		mlx_destroy_window(data->game.mlx, data->game.win);
@@ -26,13 +30,5 @@ void	ft_free_parsing(t_program *data)
 		mlx_destroy_image(data->game.mlx, data->game.minimap.img);
 		mlx_destroy_display(data->game.mlx);
 	}
-	if (data->n)
-		mlx_destroy_image(data->game.mlx, data->game.N.img);
-	if (data->s)
-		mlx_destroy_image(data->game.mlx, data->game.S.img);
-	if (data->e)
-		mlx_destroy_image(data->game.mlx, data->game.E.img);
-	if (data->w)
-		mlx_destroy_image(data->game.mlx, data->game.W.img);
 	free(data->game.mlx);
 }

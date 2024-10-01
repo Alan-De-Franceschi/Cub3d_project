@@ -21,9 +21,9 @@ static int	ft_check_comma(char *line)
 	{
 		if (line[i] == ',')
 		{
-			if (line[i + 1] == ',' || line[i + 1] == ' '
-				|| line[i + 1] == 9 || line[i + 1] == '\n'
-				|| line[i - 1] == ' ' || line[i - 1] == 9)
+			if (line[i + 1] == ',' || line[i + 1] == ' ' || line[i + 1] == 9
+				|| line[i + 1] == '\n' || line[i - 1] == ' '
+				|| line[i - 1] == 9)
 				return (EXIT_FAILURE);
 		}
 		++i;

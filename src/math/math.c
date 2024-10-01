@@ -31,12 +31,12 @@ float	ft_tan(float degree)
 	return (tan(ft_to_radian(degree)));
 }
 
-void	ft_normalize_vector(double x, double y, t_point *direction)
+void	ft_normalize_vector(double x, double y, t_point *dir)
 {
 	double	m;
 
 	m = sqrt(x * x + y * y);
-	direction->x = x / m;
-	direction->y = y / m;
+	dir->x = x / m;
+	dir->y = y / m;
 	return ;
 }

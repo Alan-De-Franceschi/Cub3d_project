@@ -28,11 +28,11 @@ void	ft_move_up(char **map, t_player *player, double delta_time)
 		new_x = player->position.x + ft_cos(player->angle) * MOVE_SPEED;
 		new_y = player->position.y + ft_sin(player->angle) * MOVE_SPEED;
 	}
-	if (map[(int)(new_y + 0.3 * player->dir_y)][(int)player->position.x] == '0')
+	if (map[(int)(new_y + 0.3 * player->dir_y)][(int)player->position.x] != '1')
 	{
 		player->position.y = new_y;
 	}
-	if (map[(int)player->position.y][(int)(new_x + 0.3 * player->dir_x)] == '0')
+	if (map[(int)player->position.y][(int)(new_x + 0.3 * player->dir_x)] != '1')
 	{
 		player->position.x = new_x;
 	}
@@ -55,11 +55,11 @@ void	ft_move_down(char **map, t_player *player, double delta_time)
 		new_x = player->position.x - ft_cos(player->angle) * MOVE_SPEED;
 		new_y = player->position.y - ft_sin(player->angle) * MOVE_SPEED;
 	}
-	if (map[(int)(new_y - 0.3 * player->dir_y)][(int)player->position.x] == '0')
+	if (map[(int)(new_y - 0.3 * player->dir_y)][(int)player->position.x] != '1')
 	{
 		player->position.y = new_y;
 	}
-	if (map[(int)player->position.y][(int)(new_x - 0.3 * player->dir_x)] == '0')
+	if (map[(int)player->position.y][(int)(new_x - 0.3 * player->dir_x)] != '1')
 	{
 		player->position.x = new_x;
 	}
@@ -84,11 +84,11 @@ void	ft_move_left(char **map, t_player *player, double delta_time)
 		new_x = player->position.x + strafe_x * MOVE_SPEED;
 		new_y = player->position.y + strafe_y * MOVE_SPEED;
 	}
-	if (map[(int)(new_y + 0.3 * strafe_y)][(int)player->position.x] == '0')
+	if (map[(int)(new_y + 0.3 * strafe_y)][(int)player->position.x] != '1')
 	{
 		player->position.y = new_y;
 	}
-	if (map[(int)player->position.y][(int)(new_x + 0.3 * strafe_x)] == '0')
+	if (map[(int)player->position.y][(int)(new_x + 0.3 * strafe_x)] != '1')
 	{
 		player->position.x = new_x;
 	}
@@ -113,11 +113,11 @@ void	ft_move_right(char **map, t_player *player, double delta_time)
 		new_x = player->position.x + strafe_x * MOVE_SPEED;
 		new_y = player->position.y + strafe_y * MOVE_SPEED;
 	}
-	if (map[(int)(new_y + 0.3 * strafe_y)][(int)player->position.x] == '0')
+	if (map[(int)(new_y + 0.3 * strafe_y)][(int)player->position.x] != '1')
 	{
 		player->position.y = new_y;
 	}
-	if (map[(int)player->position.y][(int)(new_x + 0.3 * strafe_x)] == '0')
+	if (map[(int)player->position.y][(int)(new_x + 0.3 * strafe_x)] != '1')
 	{
 		player->position.x = new_x;
 	}

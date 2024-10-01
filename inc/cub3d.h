@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                             :+:      :+:    :+:   */
+/*  cub3d.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-fran <ade-fran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-# define CUBE_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 /****************************************************************************/
 /*                              Includes                                    */
@@ -60,8 +60,8 @@ typedef struct s_data
 typedef struct s_minimap
 {
 	int				scale;
-	int				minimapX;
-	int				minimapY;
+	int				minimap_x;
+	int				minimap_y;
 	int				start_x;
 	int				start_y;
 	int				end_x;
@@ -76,10 +76,10 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	double			planeX;
+	double			plane_x;
 	float			fov;
 	float			angle;
-	float			speedMove;
+	float			speed_move;
 	bool			up;
 	bool			strafe_left;
 	bool			down;
@@ -93,43 +93,44 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	t_point			vecRay;
-	t_point			UnitStep;
-	t_point			direction;
-	double			perpWallDist;
-	double			wallX;
-	float			interX;
-	float			interY;
-	int				stepX;
-	int				stepY;
+	t_point			vec_ray;
+	t_point			unit_step;
+	t_point			dir;
+	double			perp_wall_dist;
+	double			wall_x;
+	float			inter_x;
+	float			inter_y;
+	int				step_x;
+	int				step_y;
 	int				hit;
 	int				side;
-	int				lineHeight;
-	int				Start;
-	int				End;
-	int				floorBegin;
-	int				cellingBegin;
+	int				line_height;
+	int				start;
+	int				end;
+	int				floor_begin;
+	int				celling_begin;
 	int				tex_x;
 	int				tex_y;
-	int				d;
+	int				wall_y;
 	int				i;
 	int				res;
 }					t_ray;
 
 typedef struct s_game
 {
-	int				oldX;
+	int				old_x;
 	int				x;
 	int				y;
 	void			*mlx;
 	void			*win;
+	char			**map;
+	int				bonus;
 	t_player		player;
 	t_data			img;
-	t_data			E;
-	t_data			W;
-	t_data			S;
-	t_data			N;
-	char			**map;
+	t_data			e;
+	t_data			w;
+	t_data			s;
+	t_data			n;
 	t_data			minimap;
 	struct timeval	begin;
 	struct timeval	end;
@@ -165,7 +166,7 @@ typedef struct s_program
 
 int					ft_init_data(t_program *data);
 int					ft_init_game(t_program *data);
-void				ft_init_ray(t_ray *ray, double planeX);
+void				ft_init_ray(t_ray *ray, double plane_x);
 
 /****************************************************************************/
 /*                               Parsing                                    */
@@ -225,42 +226,41 @@ int					ft_assets_err(int err, char *path, t_program *data);
 /****************************************************************************/
 
 void				ft_free_parsing(t_program *data);
-void				end_game(t_game *game);
+void				end_game(t_program *data);
 
 /******************************MAP******************************/
 void				ft_draw_minimap(t_program *data);
 void				ft_minimap(t_program *data);
 
 /******************************EVENT******************************/
-int					ft_on_key_press(int keycode, t_game *game);
+int					ft_on_key_press(int keycode, t_program *data);
 int					ft_on_key_release(int keycode, t_player *player);
-void				ft_move_up(char **map, t_player *player,
-						double delta_time);
+void				ft_move_up(char **map, t_player *player, double delta_time);
 void				ft_move_down(char **map, t_player *player,
 						double delta_time);
 void				ft_move_left(char **map, t_player *player,
 						double delta_time);
 void				ft_move_right(char **map, t_player *player,
 						double delta_time);
-void				ft_event_handler(t_game *game);
+void				ft_event_handler(t_program *data);
 
 /******************************PLAYER******************************/
-int					ft_update_player_position(t_program *data);
+int					ft_update_player_position(t_game *game);
 void				ft_get_player_dir(t_game *game);
 
 /******************************RAYCASTING******************************/
 int					ft_raycasting(t_program *data);
-void				ft_set_ray_position(t_point *vecRay, t_point *direction,
+void				ft_set_ray_position(t_point *vec_ray, t_point *dir,
 						t_player *player, int i);
-int					ft_raycast(t_program *data);
+int					ft_raycast(t_game *game);
 void				ft_first_raycast(t_game *game);
 
 /******************************MATH******************************/
 float				ft_cos(float degree);
 float				ft_sin(float degree);
 float				ft_tan(float degree);
-void				ft_normalize_vector(double x, double y, t_point *direction);
-t_point				ft_get_distance_for_next_intersection(t_point direction);
+void				ft_normalize_vector(double x, double y, t_point *dir);
+t_point				ft_get_distance_for_next_intersection(t_point dir);
 void				ft_get_first_intersection_coordinates(t_ray *ray,
 						t_game *game);
 void				ft_find_nearest_wall(t_ray *ray, t_game *game);

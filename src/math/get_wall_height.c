@@ -14,9 +14,9 @@
 static void	ft_get_perp_wall_dist(t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->perpWallDist = ray->interX - ray->UnitStep.x;
+		ray->perp_wall_dist = ray->inter_x - ray->unit_step.x;
 	else
-		ray->perpWallDist = ray->interY - ray->UnitStep.y;
+		ray->perp_wall_dist = ray->inter_y - ray->unit_step.y;
 }
 
 void	ft_get_wall_info(t_ray *ray, t_game game, int i)
@@ -24,21 +24,21 @@ void	ft_get_wall_info(t_ray *ray, t_game game, int i)
 	double	ray_angle;
 
 	ray_angle = game.player.angle - game.player.fov / 2 + (i
-			/ game.player.planeX) * game.player.fov;
+			/ game.player.plane_x) * game.player.fov;
 	ft_get_perp_wall_dist(ray);
-	ray->lineHeight = HEIGHT / (ray->perpWallDist * ft_cos(ray_angle
+	ray->line_height = HEIGHT / (ray->perp_wall_dist * ft_cos(ray_angle
 				- game.player.angle));
-	ray->End = ray->lineHeight / 2 + HEIGHT / 2;
-	ray->Start = -ray->lineHeight / 2 + HEIGHT / 2;
-	if (ray->End > HEIGHT || ray->End < 0)
+	ray->end = ray->line_height / 2 + HEIGHT / 2;
+	ray->start = -ray->line_height / 2 + HEIGHT / 2;
+	if (ray->end > HEIGHT || ray->end < 0)
 	{
-		ray->End = HEIGHT - 1;
+		ray->end = HEIGHT - 1;
 	}
-	if (ray->Start < 0)
+	if (ray->start < 0)
 	{
-		ray->Start = 0;
+		ray->start = 0;
 	}
-	ray->floorBegin = ray->End;
-	ray->cellingBegin = ray->Start;
+	ray->floor_begin = ray->end;
+	ray->celling_begin = ray->start;
 	return ;
 }

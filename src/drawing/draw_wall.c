@@ -13,25 +13,25 @@
 
 static void	ft_draw_vertical_wall(t_ray ray, t_game *game, int x, int k)
 {
-	if (ray.direction.x < 0)
+	if (ray.dir.x < 0)
 	{
-		draw(&game->img, x + k, ray.Start, game->E.addr[ray.i]);
+		draw(&game->img, x + k, ray.start, game->e.addr[ray.i]);
 	}
 	else
 	{
-		draw(&game->img, x + k, ray.Start, game->W.addr[ray.i]);
+		draw(&game->img, x + k, ray.start, game->w.addr[ray.i]);
 	}
 }
 
 static void	ft_draw_horizontal_wall(t_ray ray, t_game *game, int x, int k)
 {
-	if (ray.direction.y < 0)
+	if (ray.dir.y < 0)
 	{
-		draw(&game->img, x + k, ray.Start, game->S.addr[ray.i]);
+		draw(&game->img, x + k, ray.start, game->s.addr[ray.i]);
 	}
 	else
 	{
-		draw(&game->img, x + k, ray.Start, game->N.addr[ray.i]);
+		draw(&game->img, x + k, ray.start, game->n.addr[ray.i]);
 	}
 }
 
@@ -39,12 +39,12 @@ void	ft_draw_wall(t_ray ray, t_game *game, int x)
 {
 	int	k;
 
-	ray.tex_x = (int)(ray.wallX * (double)BLOC_SIZE);
-	while (ray.Start < ray.End)
+	ray.tex_x = (int)(ray.wall_x * (double)BLOC_SIZE);
+	while (ray.start < ray.end)
 	{
-		ray.d = (ray.Start - HEIGHT / 2 + ray.lineHeight / 2) * 128;
-		ray.tex_y = ((ray.d * BLOC_SIZE) / ray.lineHeight) / 128;
-		ray.i = ray.tex_y * (game->E.line_length / 4) + ray.tex_x;
+		ray.wall_y = (ray.start - HEIGHT / 2 + ray.line_height / 2);
+		ray.tex_y = ((ray.wall_y * BLOC_SIZE) / ray.line_height);
+		ray.i = ray.tex_y * (game->e.line_length / 4) + ray.tex_x;
 		k = 0;
 		while (k < ray.res)
 		{
@@ -58,7 +58,7 @@ void	ft_draw_wall(t_ray ray, t_game *game, int x)
 			}
 			k++;
 		}
-		ray.Start++;
+		ray.start++;
 	}
 	return ;
 }

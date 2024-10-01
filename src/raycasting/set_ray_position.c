@@ -11,17 +11,17 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	ft_set_ray_position(t_point *vecRay, t_point *direction,
-		t_player *player, int i)
+void	ft_set_ray_position(t_point *vec_ray, t_point *dir, t_player *player,
+		int i)
 {
 	t_point	target;
 
-	vecRay->x = player->position.x;
-	vecRay->y = player->position.y;
+	vec_ray->x = player->position.x;
+	vec_ray->y = player->position.y;
 	target.x = player->position.x + ft_cos((player->angle + player->fov / 2) - i
-			* (player->fov / player->planeX));
+			* (player->fov / player->plane_x));
 	target.y = player->position.y + ft_sin((player->angle + player->fov / 2) - i
-			* (player->fov / player->planeX));
-	ft_normalize_vector(target.x - vecRay->x, target.y - vecRay->y, direction);
+			* (player->fov / player->plane_x));
+	ft_normalize_vector(target.x - vec_ray->x, target.y - vec_ray->y, dir);
 	return ;
 }

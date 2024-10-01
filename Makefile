@@ -161,8 +161,8 @@ ${MLX}:
 	@make -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
 	@echo "${COLOUR_GREEN}\33[2K\nMinilibx compiled\n${COLOUR_END}"
 
-${NAME}: $(LIB_PATH) $(MLX) ${OBJECTS} ${INCLD}
-	@${CC} ${CFLAGS} ${OBJECTS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm
+${NAME}: $(LIB_PATH) ${MLX} ${OBJECTS} ${INCLD}
+	@${CC} ${CFLAGS} ${OBJECTS} ${MLX} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm
 	@echo "${COLOUR_GREEN}\33[2K\nCub3d compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm\n"
 

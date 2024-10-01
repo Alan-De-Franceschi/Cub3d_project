@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-int	ft_on_key_press(int keycode, t_game *game)
+int	ft_on_key_press(int keycode, t_program *data)
 {
 	if (keycode == XK_Escape)
-		end_game(game);
+		end_game(data);
 	if (keycode == XK_w)
-		game->player.up = true;
+		data->game.player.up = true;
 	if (keycode == XK_Left)
-		game->player.strafe_left = true;
+		data->game.player.strafe_left = true;
 	if (keycode == XK_s)
-		game->player.down = true;
+		data->game.player.down = true;
 	if (keycode == XK_Right)
-		game->player.strafe_right = true;
+		data->game.player.strafe_right = true;
 	if (keycode == XK_a)
-		game->player.a = true;
+		data->game.player.a = true;
 	if (keycode == XK_d)
-		game->player.d = true;
+		data->game.player.d = true;
 	return (0);
 }

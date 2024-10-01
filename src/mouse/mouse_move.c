@@ -45,14 +45,14 @@ int	ft_mouse_move(t_game *game)
 	float	delta_x;
 
 	mlx_mouse_get_pos(game->mlx, game->win, &x, &y);
-	if (game->oldX >= WEIGHT - 1 || x >= WEIGHT - 1)
-		delta_x = 2;
-	else if (game->oldX <= 1 || x <= 1)
-		delta_x = -2;
+	if (game->old_x >= WEIGHT - 1 || x >= WEIGHT - 1)
+		delta_x = 3;
+	else if (game->old_x <= 1 || x <= 1)
+		delta_x = -3;
 	else
-		delta_x = x - game->oldX;
-	if (x != game->oldX)
-		game->oldX = x;
+		delta_x = x - game->old_x;
+	if (x != game->old_x)
+		game->old_x = x;
 	game->player.angle += delta_x * 0.15;
 	if (game->player.angle < 0)
 		game->player.angle = 360;

@@ -11,40 +11,38 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-t_point	ft_get_distance_for_next_intersection(t_point direction)
+t_point	ft_get_distance_for_next_intersection(t_point dir)
 {
 	t_point	unit_step;
 
-	unit_step.x = sqrt(1 + (direction.y / direction.x) * (direction.y
-				/ direction.x));
-	unit_step.y = sqrt(1 + (direction.x / direction.y) * (direction.x
-				/ direction.y));
+	unit_step.x = sqrt(1 + (dir.y / dir.x) * (dir.y / dir.x));
+	unit_step.y = sqrt(1 + (dir.x / dir.y) * (dir.x / dir.y));
 	return (unit_step);
 }
 
 void	ft_get_first_intersection_coordinates(t_ray *ray, t_game *game)
 {
-	game->x = (int)ray->vecRay.x;
-	game->y = (int)ray->vecRay.y;
-	if (ray->direction.x < 0)
+	game->x = (int)ray->vec_ray.x;
+	game->y = (int)ray->vec_ray.y;
+	if (ray->dir.x < 0)
 	{
-		ray->stepX = -1;
-		ray->interX = (ray->vecRay.x - game->x) * ray->UnitStep.x;
+		ray->step_x = -1;
+		ray->inter_x = (ray->vec_ray.x - game->x) * ray->unit_step.x;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->interX = (game->x + 1 - ray->vecRay.x) * ray->UnitStep.x;
+		ray->step_x = 1;
+		ray->inter_x = (game->x + 1 - ray->vec_ray.x) * ray->unit_step.x;
 	}
-	if (ray->direction.y < 0)
+	if (ray->dir.y < 0)
 	{
-		ray->stepY = -1;
-		ray->interY = (ray->vecRay.y - game->y) * ray->UnitStep.y;
+		ray->step_y = -1;
+		ray->inter_y = (ray->vec_ray.y - game->y) * ray->unit_step.y;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->interY = (game->y + 1 - ray->vecRay.y) * ray->UnitStep.y;
+		ray->step_y = 1;
+		ray->inter_y = (game->y + 1 - ray->vec_ray.y) * ray->unit_step.y;
 	}
 	return ;
 }
