@@ -12,17 +12,17 @@
 
 #include "libft.h"
 
-t_vector    *ft_vinit()
+t_vector	*ft_vinit(void)
 {
-    t_vector    *vector;
+	t_vector	*vector;
 
-    vector = malloc(sizeof(t_vector));
-    if (!vector)
-        return (NULL);
-    vector->capacity = 5;
-    vector->size = 0;
-    vector->array = ft_calloc(vector->capacity + 1, sizeof(char *));
-    if (!vector->array)
-        return (free(vector), NULL);
-    return (vector);
+	vector = malloc(sizeof(t_vector));
+	if (!vector)
+		return (NULL);
+	vector->capacity = 5;
+	vector->size = 0;
+	vector->array = ft_calloc(vector->capacity + 1, sizeof(char *));
+	if (!vector->array)
+		return (free(vector), NULL);
+	return (vector);
 }
