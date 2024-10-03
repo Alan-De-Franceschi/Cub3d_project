@@ -52,23 +52,27 @@ int	ft_init_game(t_program *data)
 {
 	data->game.mlx = mlx_init();
 	if (data->game.mlx == NULL)
-		return (EXIT_FAILURE);
+		return (ft_serv_err(SERV_INIT, data));
 	data->game.win = mlx_new_window(data->game.mlx, WEIGHT, HEIGHT, "Cub3d");
 	if (data->game.win == NULL)
-		return (free(data->game.mlx), EXIT_FAILURE);
+		return (ft_serv_err(WINDOW_ERR, data));
 	ft_init_player(data);
 	data->game.minimap.img = mlx_new_image(data->game.mlx, 200, 200);
 	if (data->game.minimap.img == NULL)
-		return (free(data->game.mlx), free(data->game.win), 1);
+		return (ft_serv_err(MMAP_IMG, data));
 	data->game.minimap.addr = (int *)mlx_get_data_addr(data->game.minimap.img,
 			&data->game.minimap.bits_per_pixel, &data->game.minimap.line_length,
 			&data->game.minimap.endian);
+	if (data->game.minimap.addr == NULL)
+		return (ft_serv_err(MMAP_ADDR, data));
 	data->game.img.img = mlx_new_image(data->game.mlx, WEIGHT, HEIGHT);
+	if (data->game.img.img == NULL)
+		return (ft_serv_err(GAME_IMG, data));
 	data->game.img.addr = (int *)mlx_get_data_addr(data->game.img.img,
 			&data->game.img.bits_per_pixel, &data->game.img.line_length,
 			&data->game.img.endian);
+	if (data->game.img.addr == NULL)
+		return (ft_serv_err(GAME_ADDR, data));
 	data->game.old_x = WEIGHT / 2;
-	data->game.x = 0;
-	data->game.y = 0;
 	return (EXIT_SUCCESS);
 }

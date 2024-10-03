@@ -29,13 +29,13 @@ int	ft_init_data(t_program *data)
 	data->game.map = NULL;
 	data->game_init = 0;
 	data->game.mlx = NULL;
-	data->start_x = 0;
-	data->start_y = 0;
 	data->vemap = ft_vinit();
 	if (!data->vemap)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	if (ft_init_game(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	data->game.x = 0;
+	data->game.y = 0;
 	data->game_init = 1;
 	return (EXIT_SUCCESS);
 }

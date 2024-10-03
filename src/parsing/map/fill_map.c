@@ -22,6 +22,25 @@ static void	ft_check_start(char c, int x, int y, t_program *data)
 	}
 }
 
+static void	ft_fill_end_of_line(char *str, int *x, int line_len)
+{
+	while (*x < line_len)
+	{
+		str[*x] = '1';
+		++(*x);
+	}
+}
+
+static void	ft_fill_line(t_program *data, char *str, int *x, int y)
+{
+	ft_check_start(data->vemap->array[y][*x], *x, y, data);
+	if (data->vemap->array[y][*x] == ' ')
+		str[*x] = '1';
+	else
+		str[*x] = data->vemap->array[y][*x];
+	++(*x);
+}
+
 int	ft_fill_map(char **array, t_program *data, int line_len, int nb_line)
 {
 	int		y;
@@ -39,22 +58,9 @@ int	ft_fill_map(char **array, t_program *data, int line_len, int nb_line)
 		while (x < line_len)
 		{
 			if (array[y][x] == '\0' || array[y][x] == '\n')
-			{
-				while (x < line_len)
-				{
-					str[x] = '1';
-					++x;
-				}
-			}
+				ft_fill_end_of_line(str, &x, line_len);
 			else
-			{
-				ft_check_start(array[y][x], x, y, data);
-				if (array[y][x] == ' ')
-					str[x] = '1';
-				else
-					str[x] = array[y][x];
-				++x;
-			}
+				ft_fill_line(data, str, &x, y);
 		}
 		data->game.map[y] = str;
 		str = NULL;

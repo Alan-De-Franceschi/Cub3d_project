@@ -77,6 +77,7 @@ SOURCES_PARSING		=	parsing/parsing.c \
 						parsing/map/parse_map_utils.c \
 
 SOURCES_ERRORS		=	errors/parsing_errors.c \
+						errors/serv_err.c\
 
 SOURCES_FREE		=	free/free_parsing.c \
 						free/end_game.c \

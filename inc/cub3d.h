@@ -215,11 +215,18 @@ enum				e_errors
 	NO_START = 16,
 	LOAD_ASSET = 17,
 	ASSET_ADDR = 18,
+	SERV_INIT = 19,
+	WINDOW_ERR = 20,
+	MMAP_IMG = 21,
+	MMAP_ADDR = 22,
+	GAME_IMG = 23,
+	GAME_ADDR = 24,
 };
 
 int					ft_parsing_err(int err, char *param, t_program *data);
 int					ft_map_err(int err, int start, int line, char c);
 int					ft_assets_err(int err, char *path, t_program *data);
+int					ft_serv_err(int err, t_program *data);
 
 /****************************************************************************/
 /*                                   Free                                   */

@@ -32,5 +32,7 @@ int	ft_parse_map(t_vector *vector, t_program *data)
 	if (ft_map_alloc(vector->array, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_fill_map(vector->array, data, data->nb_column, data->nb_line);
+	ft_free_strtab(data->vemap->array);
+	data->vemap->array = NULL;
 	return (EXIT_SUCCESS);
 }
