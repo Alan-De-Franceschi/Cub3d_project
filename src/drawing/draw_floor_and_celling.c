@@ -20,7 +20,7 @@ void	ft_draw_floor_and_celling(t_ray ray, t_game *game, int x)
 		k = 0;
 		while (k < ray.res)
 		{
-			draw(&game->img, x + k, ray.floor_begin, WHITE);
+			draw(&game->img, x + k, ray.floor_begin, game->f_color);
 			k++;
 		}
 		ray.floor_begin++;
@@ -30,7 +30,7 @@ void	ft_draw_floor_and_celling(t_ray ray, t_game *game, int x)
 		k = 0;
 		while (k < ray.res)
 		{
-			draw(&game->img, x + k, ray.celling_begin, BLUE);
+			draw(&game->img, x + k, ray.celling_begin, game->c_color);
 			k++;
 		}
 		ray.celling_begin--;

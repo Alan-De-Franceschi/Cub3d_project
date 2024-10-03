@@ -29,13 +29,20 @@ void	ft_init_ray(t_ray *ray, double plane_x)
 	return ;
 }
 
-static void	ft_init_player(t_program *data)
+void	ft_init_player(t_program *data)
 {
 	data->game.player.plane_x = 320;
-	data->game.player.position.x = data->start_x;
-	data->game.player.position.y = data->start_y;
+	data->game.player.position.x = data->start_x + 0.1;
+	data->game.player.position.y = data->start_y + 0.1;
 	data->game.player.fov = 60.0f;
-	data->game.player.angle = 270.0f;
+	if (data->start == 'N')
+		data->game.player.angle = 270;
+	else if (data->start == 'S')
+		data->game.player.angle = 90;
+	else if (data->start == 'E')
+		data->game.player.angle = 180;
+	else if (data->start == 'W')
+		data->game.player.angle = 0;
 	data->game.player.speed_move = 200.0f;
 	data->game.player.up = false;
 	data->game.player.strafe_left = false;
@@ -48,6 +55,21 @@ static void	ft_init_player(t_program *data)
 	return ;
 }
 
+void	ft_second_init(t_program *data)
+{
+	data->game.bonus = data->bonus;
+	data->game.c_color = data->c_colors;
+	data->game.f_color = data->f_colors;
+}
+
+static void	ft_init_image(t_game *game)
+{
+	game->minimap.img = NULL;
+	game->minimap.addr = NULL;
+	game->img.img = NULL;
+	game->img.addr = NULL;
+}
+
 int	ft_init_game(t_program *data)
 {
 	data->game.mlx = mlx_init();
@@ -56,7 +78,7 @@ int	ft_init_game(t_program *data)
 	data->game.win = mlx_new_window(data->game.mlx, WEIGHT, HEIGHT, "Cub3d");
 	if (data->game.win == NULL)
 		return (ft_serv_err(WINDOW_ERR, data));
-	ft_init_player(data);
+	ft_init_image(&data->game);
 	data->game.minimap.img = mlx_new_image(data->game.mlx, 200, 200);
 	if (data->game.minimap.img == NULL)
 		return (ft_serv_err(MMAP_IMG, data));

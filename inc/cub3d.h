@@ -38,8 +38,6 @@
 # define ANGLE_SPEED 0.004
 # define WEIGHT 640
 # define HEIGHT 640
-# define RED 0x00FF0000
-# define BLUE 0x0053F0FF
 # define GREEN 0x0000FF00
 # define WHITE 0xFFFFFFFF
 # define GREY 0x00C0C0C0
@@ -121,6 +119,8 @@ typedef struct s_game
 	int				old_x;
 	int				x;
 	int				y;
+	int				c_color;
+	int				f_color;
 	void			*mlx;
 	void			*win;
 	char			**map;
@@ -167,6 +167,8 @@ typedef struct s_program
 int					ft_init_data(t_program *data);
 int					ft_init_game(t_program *data);
 void				ft_init_ray(t_ray *ray, double plane_x);
+void				ft_init_player(t_program *data);
+void				ft_second_init(t_program *data);
 
 /****************************************************************************/
 /*                               Parsing                                    */
