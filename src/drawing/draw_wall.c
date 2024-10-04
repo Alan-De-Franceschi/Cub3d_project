@@ -42,9 +42,9 @@ void	ft_draw_wall(t_ray ray, t_game *game, int x)
 	ray.tex_x = (int)(ray.wall_x * (double)BLOC_SIZE);
 	while (ray.start < ray.end)
 	{
-		ray.wall_y = (ray.start - HEIGHT / 2 + ray.line_height / 2);
-		ray.tex_y = ((ray.wall_y * BLOC_SIZE) / ray.line_height);
-		ray.i = ray.tex_y * (game->e.line_length / 4) + ray.tex_x;
+		ray.wall_y = (ray.start - HEIGHT / 2 + ray.line_height / 2) * 256;
+		ray.tex_y = abs(((ray.wall_y * BLOC_SIZE) / ray.line_height) / 256);
+		ray.i = ray.tex_y * (BLOC_SIZE) + ray.tex_x;
 		k = 0;
 		while (k < ray.res)
 		{

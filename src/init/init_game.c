@@ -32,8 +32,8 @@ void	ft_init_ray(t_ray *ray, double plane_x)
 void	ft_init_player(t_program *data)
 {
 	data->game.player.plane_x = 320;
-	data->game.player.position.x = data->start_x + 0.1;
-	data->game.player.position.y = data->start_y + 0.1;
+	data->game.player.position.x = data->start_x + 0.5;
+	data->game.player.position.y = data->start_y + 0.5;
 	data->game.player.fov = 60.0f;
 	if (data->start == 'N')
 		data->game.player.angle = 270;
