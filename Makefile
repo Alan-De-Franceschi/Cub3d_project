@@ -30,6 +30,8 @@ COLOUR_END		=	\033[0m
 
 MLX_FLAGS 		=	-L minilibx-linux/ -lmlx -lXext -lX11
 
+MLX_CLONE 		= 	minilibx-linux/
+
 MLX 			=	minilibx-linux/libmlx_Linux.a
 
 # **************************************************************************** #
@@ -151,13 +153,13 @@ INCLD			=	${INCLD_DIR}cub3d.h
 #                                                                              #
 # **************************************************************************** #
 
-all:  mlx ${NAME}
+all:  ${MLX_CLONE} ${NAME}
 
 ${LIB_PATH}: ${LIB_SRC} ${LIB_INCLD}
 	@make -C ${LIBFT_FOLDER} --no-print-directory
 	@echo "${COLOUR_GREEN}\33[2K\nLibft compiled${COLOUR_END}"
 
-${MLX}:
+${MLX}: ${MLX_CLONE}
 	@echo ""
 	@make -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
 	@echo "${COLOUR_GREEN}\33[2K\nMinilibx compiled\n${COLOUR_END}"
@@ -171,7 +173,7 @@ ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.c
 	@mkdir -p ${dir $@}
 	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling Cub3d :${COLOUR_END} $@"
 
-mlx:
+${MLX_CLONE}:
 	git clone https://github.com/42Paris/minilibx-linux.git
 
 clean:

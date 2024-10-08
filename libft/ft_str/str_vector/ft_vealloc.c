@@ -18,7 +18,7 @@ char	**ft_vealloc(t_vector *vector)
 	size_t	i;
 
 	i = 0;
-	vector->capacity += 1;
+	vector->capacity *= 2;
 	new_array = ft_calloc(vector->capacity + 1, sizeof(char *));
 	if (!new_array)
 		return (ft_free_strtab(vector->array), NULL);
