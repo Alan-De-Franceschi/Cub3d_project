@@ -15,12 +15,14 @@ static void	ft_draw_vertical_wall(t_ray ray, t_game *game, int x, int k)
 {
 	if (ray.dir.x < 0)
 	{
+		ray.i += BLOC_SIZE - 1 - ray.tex_x * 2;
 		draw(&game->img, x + k, ray.start, game->e.addr[ray.i]);
 	}
 	else
 	{
 		draw(&game->img, x + k, ray.start, game->w.addr[ray.i]);
 	}
+	return ;
 }
 
 static void	ft_draw_horizontal_wall(t_ray ray, t_game *game, int x, int k)
@@ -31,8 +33,10 @@ static void	ft_draw_horizontal_wall(t_ray ray, t_game *game, int x, int k)
 	}
 	else
 	{
+		ray.i += BLOC_SIZE - 1 - ray.tex_x * 2;
 		draw(&game->img, x + k, ray.start, game->n.addr[ray.i]);
 	}
+	return ;
 }
 
 void	ft_draw_wall(t_ray ray, t_game *game, int x)
@@ -43,7 +47,7 @@ void	ft_draw_wall(t_ray ray, t_game *game, int x)
 	while (ray.start < ray.end)
 	{
 		ray.wall_y = (ray.start - HEIGHT / 2 + ray.line_height / 2);
-		ray.tex_y = abs(((ray.wall_y * BLOC_SIZE) / ray.line_height));
+		ray.tex_y = (ray.wall_y * BLOC_SIZE) / ray.line_height;
 		ray.i = ray.tex_y * (BLOC_SIZE) + ray.tex_x;
 		k = 0;
 		while (k < ray.res)

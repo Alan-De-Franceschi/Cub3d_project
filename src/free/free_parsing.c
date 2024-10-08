@@ -16,7 +16,8 @@ void	ft_free_parsing(t_program *data)
 {
 	if (data->map_file != -1)
 		close(data->map_file);
-	ft_free_strtab(data->vemap->array);
+	if (data->vemap != NULL)
+		ft_free_strtab(data->vemap->array);
 	free(data->vemap);
 	ft_free_strtab(data->game.map);
 	if (data->n)

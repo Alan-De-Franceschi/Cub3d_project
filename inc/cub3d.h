@@ -174,8 +174,10 @@ void				ft_second_init(t_program *data);
 /*                               Parsing                                    */
 /****************************************************************************/
 
-int					ft_parsing(int argc, char *map, char *exec, t_program *data);
-int					ft_check_args(char *map, char *exec, int argc, t_program *data);
+int					ft_parsing(int argc, char *map, char *exec,
+						t_program *data);
+int					ft_check_args(char *map, char *exec, int argc,
+						t_program *data);
 /*Parameters*/
 int					ft_read_param(char *line, t_program *data);
 int					ft_save_path(char *line, t_data *view, t_program *data,

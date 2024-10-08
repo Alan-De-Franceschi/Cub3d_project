@@ -12,6 +12,8 @@
 
 NAME			=	cub3D
 
+NAME_BONUS		=	cub3D_bonus
+
 CFLAGS			=	-g3 -Wall -Wextra -Werror -I ${INCLD_DIR}
 
 CC				=	cc
@@ -155,6 +157,8 @@ INCLD			=	${INCLD_DIR}cub3d.h
 
 all:  ${MLX_CLONE} ${NAME}
 
+bonus: ${MLX_CLONE} ${NAME_BONUS}
+
 ${LIB_PATH}: ${LIB_SRC} ${LIB_INCLD}
 	@make -C ${LIBFT_FOLDER} --no-print-directory
 	@echo "${COLOUR_GREEN}\33[2K\nLibft compiled${COLOUR_END}"
@@ -168,6 +172,11 @@ ${NAME}: $(LIB_PATH) ${MLX} ${OBJECTS} ${INCLD}
 	@${CC} ${CFLAGS} ${OBJECTS} ${MLX} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm
 	@echo "${COLOUR_GREEN}\33[2K\nCub3d compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm\n"
+
+${NAME_BONUS}: $(LIB_PATH) ${MLX} ${OBJECTS} ${INCLD}
+	@${CC} ${CFLAGS} ${OBJECTS} ${MLX} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME_BONUS} -lm
+	@echo "${COLOUR_GREEN}\33[2K\nCub3d compiled with : \n${COLOUR_END}"
+	@echo "	${CC} ${CFLAGS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME_BONUS} -lm\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.c
 	@mkdir -p ${dir $@}
@@ -184,6 +193,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
+	@rm -f ${NAME_BONUS}
 	@rm -rf minilibx-linux
 	@echo "${COLOUR_GREEN}\nCub3d cleaned\n${COLOUR_END}"
 	@make fclean -C libft/ --no-print-directory
