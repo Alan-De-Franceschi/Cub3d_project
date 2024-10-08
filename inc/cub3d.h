@@ -18,8 +18,8 @@
 /****************************************************************************/
 
 # include "../libft/inc/libft.h"
-# include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
