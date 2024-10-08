@@ -42,11 +42,11 @@ static void	ft_check_for_map_limits(t_minimap *minimap, t_program data)
 
 static void	ft_init_minimap(t_minimap *minimap, t_program data)
 {
-	minimap->scale = 25;
-	minimap->start_x = (int)data.game.player.position.x - 4;
-	minimap->start_y = (int)data.game.player.position.y - 4;
-	minimap->end_x = (int)data.game.player.position.x + 4;
-	minimap->end_y = (int)data.game.player.position.y + 4;
+	minimap->scale = 20;
+	minimap->start_x = (int)data.game.player.position.x - 5;
+	minimap->start_y = (int)data.game.player.position.y - 5;
+	minimap->end_x = (int)data.game.player.position.x + 5;
+	minimap->end_y = (int)data.game.player.position.y + 5;
 	ft_check_for_map_limits(minimap, data);
 	return ;
 }
@@ -57,10 +57,10 @@ static void	ft_draw_minimap_wall(t_minimap minimap, t_data *img)
 	int	i;
 
 	k = 0;
-	while (k < minimap.scale - 1)
+	while (k < minimap.scale)
 	{
 		i = 0;
-		while (i < minimap.scale - 1)
+		while (i < minimap.scale)
 		{
 			draw(img, minimap.minimap_x + i, minimap.minimap_y + k, WHITE);
 			i++;
@@ -76,10 +76,10 @@ static void	ft_draw_minimap_floor(t_minimap minimap, t_game *game, int x, int y)
 	int	i;
 
 	k = 0;
-	while (k < minimap.scale - 1)
+	while (k < minimap.scale)
 	{
 		i = 0;
-		while (i < minimap.scale - 1)
+		while (i < minimap.scale)
 		{
 			if (x == (int)game->player.position.x
 				&& y == (int)game->player.position.y)

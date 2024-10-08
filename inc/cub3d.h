@@ -40,7 +40,7 @@
 # define HEIGHT 640
 # define GREEN 0x0000FF00
 # define WHITE 0xFFFFFFFF
-# define GREY 0x00C0C0C0
+# define GREY 0x00696969
 
 /****************************************************************************/
 /*                              Structures                                  */
