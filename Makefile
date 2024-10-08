@@ -12,8 +12,6 @@
 
 NAME			=	cub3D
 
-NAME_BONUS 		= 	cub3D_bonus
-
 CFLAGS			=	-g3 -Wall -Wextra -Werror -I ${INCLD_DIR}
 
 CC				=	cc
@@ -30,9 +28,11 @@ COLOUR_END		=	\033[0m
 #                                                                              #
 # **************************************************************************** #
 
-MLX_FLAGS 		=	-L mlx/ -lmlx -lXext -lX11
+MLX_FLAGS 		=	-L minilibx-linux/ -lmlx -lXext -lX11
 
-MLX 			=	mlx/libmlx_Linux.a
+MLX_CLONE 		= 	minilibx-linux/
+
+MLX 			=	minilibx-linux/libmlx_Linux.a
 
 # **************************************************************************** #
 #                                                                              #
@@ -153,50 +153,41 @@ INCLD			=	${INCLD_DIR}cub3d.h
 #                                                                              #
 # **************************************************************************** #
 
-all:  mlx ${NAME}
-
-bonus: mlx ${NAME_BONUS}
+all:  ${MLX_CLONE} ${NAME}
 
 ${LIB_PATH}: ${LIB_SRC} ${LIB_INCLD}
 	@make -C ${LIBFT_FOLDER} --no-print-directory
 	@echo "${COLOUR_GREEN}\33[2K\nLibft compiled${COLOUR_END}"
 
-${MLX}:
+${MLX}: ${MLX_CLONE}
 	@echo ""
-	@make -C mlx/ --no-print-directory > /dev/null 2>&1
-	@echo "${COLOUR_GREEN}\33[2K\nMlx compiled\n${COLOUR_END}"
+	@make -C minilibx-linux/ --no-print-directory > /dev/null 2>&1
+	@echo "${COLOUR_GREEN}\33[2K\nMinilibx compiled\n${COLOUR_END}"
 
 ${NAME}: $(LIB_PATH) ${MLX} ${OBJECTS} ${INCLD}
 	@${CC} ${CFLAGS} ${OBJECTS} ${MLX} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm
 	@echo "${COLOUR_GREEN}\33[2K\nCub3d compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME} -lm\n"
 
-${NAME_BONUS}: $(LIB_PATH) ${MLX} ${OBJECTS} ${INCLD}
-	@${CC} ${CFLAGS} ${OBJECTS} ${MLX} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME_BONUS} -lm
-	@echo "${COLOUR_GREEN}\33[2K\nCub3d compiled with : \n${COLOUR_END}"
-	@echo "	${CC} ${CFLAGS} $(LIB_PATH) $(MLX_FLAGS) -o ${NAME_BONUS} -lm\n"
-
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.c
 	@mkdir -p ${dir $@}
 	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling Cub3d :${COLOUR_END} $@"
 
-mlx:
+${MLX_CLONE}:
 	git clone https://github.com/42Paris/minilibx-linux.git
-	mv minilibx-linux mlx
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
 	@make fclean -C libft/ --no-print-directory
-	@make clean -C mlx/ --no-print-directory
+	@make clean -C minilibx-linux/ --no-print-directory
 
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@rm -f ${NAME_BONUS}
-	@rm -rf mlx
+	@rm -rf minilibx-linux
 	@echo "${COLOUR_GREEN}\nCub3d cleaned\n${COLOUR_END}"
 	@make fclean -C libft/ --no-print-directory
-	@echo "${COLOUR_GREEN}Mlx cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}Minilibx cleaned\n${COLOUR_END}"
 	
 
 re: fclean all
