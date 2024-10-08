@@ -12,15 +12,19 @@
 
 #include "cub3d.h"
 
-static void	ft_print_wrong_param(char *param, t_program *data)
+static void	ft_print_wrong_param(int err, char *param)
 {
-	if (data->n || data->s || data->w || data->e || data->f || data->c)
-		ft_putstr_fd("Error\nDuplicate parameter\n", 2);
-	else
+	if (err == DUP_PARAM)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_printf("Error\n", 2);
 		write(2, param, ft_strlen(param) - 1);
-		ft_putstr_fd(": Wrong parameters format\n", 2);
+		ft_printf(": Duplicate parameter\n", 2);
+	}
+	else if (err == W_PARAM)
+	{
+		ft_printf("Error\n", 2);
+		write(2, param, ft_strlen(param) - 1);
+		ft_printf(": Wrong parameter format\n", 2);
 	}
 }
 
@@ -37,7 +41,9 @@ int	ft_parsing_err(int err, char *param, t_program *data)
 	else if (err == GNL_ERR)
 		ft_putstr_fd("Error\nGet Next Line: Error\n", 2);
 	else if (err == W_PARAM)
-		ft_print_wrong_param(param, data);
+		ft_print_wrong_param(err, param);
+	else if (err == DUP_PARAM)
+		ft_print_wrong_param(err, param);
 	else if (err == SPLIT_MEM)
 		perror("Error\nSplit");
 	else if (err == MEM_ERR)

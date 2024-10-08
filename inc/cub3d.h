@@ -223,6 +223,7 @@ enum				e_errors
 	MMAP_ADDR = 22,
 	GAME_IMG = 23,
 	GAME_ADDR = 24,
+	DUP_PARAM = 25,
 };
 
 int					ft_parsing_err(int err, char *param, t_program *data);

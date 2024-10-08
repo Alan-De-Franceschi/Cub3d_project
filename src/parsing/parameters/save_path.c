@@ -31,6 +31,8 @@ int	ft_save_path(char *line, t_data *view, t_program *data, int *param)
 {
 	char	**split;
 
+	if (*param)
+		return (ft_parsing_err(DUP_PARAM, line, data));
 	split = ft_split(line, " \n\t");
 	if (!split)
 		return (ft_parsing_err(SPLIT_MEM, NULL, data));
