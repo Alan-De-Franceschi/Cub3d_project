@@ -12,10 +12,16 @@
 
 #include "cub3d.h"
 
-static int	ft_check_comma(char *line)
+static int	ft_check_comma(char *line, t_program *data)
 {
-	int	i;
+	char	**test;
+	int		i;
 
+	test = ft_split(line, " \t\n");
+	if (!test)
+		return (ft_parsing_err(MEM_ERR, NULL, data));
+	if (ft_strtab_len(test) != 2)
+		return (ft_free_strtab(test), ft_parsing_err(W_PARAM, line, data));
 	i = 0;
 	while (line[i] != '\n')
 	{
@@ -24,11 +30,12 @@ static int	ft_check_comma(char *line)
 			if (line[i + 1] == ',' || line[i + 1] == ' ' || line[i + 1] == 9
 				|| line[i + 1] == '\n' || line[i - 1] == ' '
 				|| line[i - 1] == 9)
-				return (EXIT_FAILURE);
+				return (ft_free_strtab(test),
+					ft_parsing_err(W_PARAM, line, data));
 		}
 		++i;
 	}
-	return (EXIT_SUCCESS);
+	return (ft_free_strtab(test), EXIT_SUCCESS);
 }
 
 static int	*ft_fill_colors_array(char **split, t_program *data)
@@ -49,6 +56,7 @@ static int	*ft_fill_colors_array(char **split, t_program *data)
 		if (data->err || colors[i] < 0 || colors[i] > 255)
 		{
 			ft_parsing_err(ATOI_ERR, NULL, data);
+			free(colors);
 			return (ft_free_strtab(split), NULL);
 		}
 		++i;
@@ -66,8 +74,8 @@ int	ft_save_colors(char *line, int *color, t_program *data, int *param)
 	char	**split;
 	int		*colors_array;
 
-	if (ft_check_comma(line) == EXIT_FAILURE)
-		return (ft_parsing_err(W_PARAM, line, data));
+	if (ft_check_comma(line, data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	split = ft_split(line, " ,\n\t");
 	if (!split)
 		return (ft_parsing_err(SPLIT_MEM, NULL, data));
