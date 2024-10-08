@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_program	data;
 
-	if (ft_parsing(argc, argv[1], &data) == EXIT_FAILURE)
+	if (ft_parsing(argc, argv[1], argv[0], &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_init_player(&data);
 	ft_second_init(&data);

@@ -41,13 +41,13 @@ static int	ft_read_file(t_program *data)
 	}
 }
 
-int	ft_parsing(int argc, char *argv, t_program *data)
+int	ft_parsing(int argc, char *map, char *exec, t_program *data)
 {
 	if (ft_init_data(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (ft_check_args(argv, argc, data) == EXIT_FAILURE)
+	if (ft_check_args(map, exec, argc, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	data->map_file = open(argv, O_RDONLY);
+	data->map_file = open(map, O_RDONLY);
 	if (data->map_file == -1)
 		return (ft_parsing_err(OPEN_ERR, NULL, data));
 	if (ft_read_file(data) == EXIT_FAILURE)
