@@ -45,7 +45,7 @@ void	ft_first_raycast(t_game *game)
 	int		i;
 
 	i = 0;
-	x = WEIGHT;
+	x = 0;
 	ft_init_ray(&ray, (*game).player.plane_x);
 	while (i < game->player.plane_x)
 	{
@@ -71,7 +71,7 @@ int	ft_raycast(t_game *game)
 	int		i;
 
 	i = 0;
-	x = WEIGHT;
+	x = 0;
 	ft_init_ray(&ray, game->player.plane_x);
 	if (ft_update_player_position(game))
 	{

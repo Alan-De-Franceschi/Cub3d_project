@@ -18,8 +18,8 @@
 /****************************************************************************/
 
 # include "../libft/inc/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
+# include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -40,7 +40,7 @@
 # define HEIGHT 640
 # define GREEN 0x0000FF00
 # define WHITE 0xFFFFFFFF
-# define GREY 0x00C0C0C0
+# define GREY 0x00696969
 
 /****************************************************************************/
 /*                              Structures                                  */
