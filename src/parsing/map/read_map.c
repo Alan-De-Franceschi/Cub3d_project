@@ -26,7 +26,7 @@ int	ft_read_map(char *line, t_vector *vector, t_program *data)
 {
 	if (ft_check_empty_line(line))
 		return (free(line), EXIT_SUCCESS);
-	if (ft_vadd(vector, line) == EXIT_FAILURE)
+	if (ft_vadd(&vector, line) == EXIT_FAILURE)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	return (EXIT_SUCCESS);
 }

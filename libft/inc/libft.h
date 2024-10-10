@@ -64,7 +64,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char *charset);
-void				ft_free_strtab(char **tab);
+void				ft_free_strtab(char ***tab);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 
@@ -100,7 +100,7 @@ typedef struct s_vector
 
 t_vector			*ft_vinit(void);
 char				**ft_vealloc(t_vector *vector);
-int					ft_vadd(t_vector *vector, char *element);
+int					ft_vadd(t_vector **vector, char *element);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10

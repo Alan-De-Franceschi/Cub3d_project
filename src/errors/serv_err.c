@@ -19,7 +19,6 @@ static void	ft_mmap_err(int err, t_program *data)
 		ft_printf("Error\nMLX: Impossible to create minimap image\n", 2);
 		mlx_destroy_window(data->game.mlx, data->game.win);
 		mlx_destroy_display(data->game.mlx);
-		free(data->game.mlx);
 	}
 	else if (err == MMAP_ADDR)
 	{
@@ -27,7 +26,6 @@ static void	ft_mmap_err(int err, t_program *data)
 		mlx_destroy_window(data->game.mlx, data->game.win);
 		mlx_destroy_image(data->game.mlx, data->game.minimap.img);
 		mlx_destroy_display(data->game.mlx);
-		free(data->game.mlx);
 	}
 }
 
@@ -39,7 +37,6 @@ static void	ft_img_err(int err, t_program *data)
 		mlx_destroy_window(data->game.mlx, data->game.win);
 		mlx_destroy_image(data->game.mlx, data->game.minimap.img);
 		mlx_destroy_display(data->game.mlx);
-		free(data->game.mlx);
 	}
 	else if (err == GAME_ADDR)
 	{
@@ -48,7 +45,6 @@ static void	ft_img_err(int err, t_program *data)
 		mlx_destroy_image(data->game.mlx, data->game.minimap.img);
 		mlx_destroy_image(data->game.mlx, data->game.img.img);
 		mlx_destroy_display(data->game.mlx);
-		free(data->game.mlx);
 	}
 }
 
@@ -57,10 +53,7 @@ int	ft_serv_err(int err, t_program *data)
 	if (err == SERV_INIT)
 		ft_printf("Error\nMLX: Impossible to init mlx serv\n", 2);
 	else if (err == WINDOW_ERR)
-	{
 		ft_printf("Error\nMLX: Impossible to create new window\n", 2);
-		free(data->game.mlx);
-	}
 	else if (err == MMAP_IMG || err == MMAP_ADDR)
 		ft_mmap_err(err, data);
 	else if (err == GAME_IMG || err == GAME_ADDR)

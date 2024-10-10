@@ -39,11 +39,11 @@ int	ft_save_path(char *line, t_data *view, t_program *data, int *param)
 	if (ft_strtab_len(split) == 2 && ft_strncmp(split[1], "./", 2) == 0)
 	{
 		if (ft_load_assets(split[1], view, data) == EXIT_FAILURE)
-			return (ft_free_strtab(split), EXIT_FAILURE);
+			return (ft_free_strtab(&split), EXIT_FAILURE);
 		++data->parameters;
 	}
 	else
-		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, line, data));
+		return (ft_free_strtab(&split), ft_parsing_err(W_PARAM, line, data));
 	*param = 1;
-	return (ft_free_strtab(split), EXIT_SUCCESS);
+	return (ft_free_strtab(&split), EXIT_SUCCESS);
 }

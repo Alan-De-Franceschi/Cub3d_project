@@ -21,7 +21,7 @@ char	**ft_vealloc(t_vector *vector)
 	vector->capacity *= 2;
 	new_array = ft_calloc(vector->capacity + 1, sizeof(char *));
 	if (!new_array)
-		return (ft_free_strtab(vector->array), NULL);
+		return (ft_free_strtab(&vector->array), NULL);
 	while (i < vector->size)
 	{
 		new_array[i] = vector->array[i];

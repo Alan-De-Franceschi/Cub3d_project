@@ -14,7 +14,7 @@ NAME			=	libft.a
 
 LIB_PATH		=	lib/
 
-CFLAGS			=	-Wall -Wextra -Werror -I ${INCLD_DIR}
+CFLAGS			=	-Wall -Wextra -Werror -I ${INCLD_DIR} -g3
 
 CC				=	cc
 

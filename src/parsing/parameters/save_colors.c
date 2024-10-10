@@ -21,21 +21,21 @@ static int	ft_check_comma(char *line, t_program *data)
 	if (!test)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	if (ft_strtab_len(test) != 2)
-		return (ft_free_strtab(test), ft_parsing_err(W_PARAM, line, data));
+		return (ft_free_strtab(&test), ft_parsing_err(W_PARAM, line, data));
 	i = 0;
 	while (line[i] != '\n')
 	{
 		if (line[i] == ',')
 		{
 			if (line[i + 1] == ',' || line[i + 1] == ' ' || line[i + 1] == 9
-				|| line[i + 1] == '\n' || line[i - 1] == ' '
-				|| line[i - 1] == 9)
-				return (ft_free_strtab(test),
-					ft_parsing_err(W_PARAM, line, data));
+				|| line[i + 1] == '\n' || line[i - 1] == ' ' || line[i
+					- 1] == 9)
+				return (ft_free_strtab(&test), ft_parsing_err(W_PARAM, line,
+						data));
 		}
 		++i;
 	}
-	return (ft_free_strtab(test), EXIT_SUCCESS);
+	return (ft_free_strtab(&test), EXIT_SUCCESS);
 }
 
 static int	*ft_fill_colors_array(char **split, t_program *data)
@@ -57,7 +57,7 @@ static int	*ft_fill_colors_array(char **split, t_program *data)
 		{
 			ft_parsing_err(ATOI_ERR, NULL, data);
 			free(colors);
-			return (ft_free_strtab(split), NULL);
+			return (ft_free_strtab(&split), NULL);
 		}
 		++i;
 	}
@@ -89,7 +89,7 @@ int	ft_save_colors(char *line, int *color, t_program *data, int *param)
 		++data->parameters;
 	}
 	else
-		return (ft_free_strtab(split), ft_parsing_err(W_PARAM, line, data));
+		return (ft_free_strtab(&split), ft_parsing_err(W_PARAM, line, data));
 	*param = 1;
-	return (ft_free_strtab(split), EXIT_SUCCESS);
+	return (ft_free_strtab(&split), EXIT_SUCCESS);
 }
