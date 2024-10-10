@@ -26,6 +26,7 @@ int	ft_init_data(t_program *data)
 	data->c_colors = 0;
 	data->c = 0;
 	data->map_file = -1;
+	data->first_line = 0;
 	data->game.map = NULL;
 	data->game_init = 0;
 	data->game.mlx = NULL;

@@ -24,8 +24,9 @@ static int	ft_check_empty_line(char *line)
 
 int	ft_read_map(char *line, t_vector *vector, t_program *data)
 {
-	if (ft_check_empty_line(line))
+	if (ft_check_empty_line(line) && data->first_line == 0)
 		return (free(line), EXIT_SUCCESS);
+	data->first_line = 1;
 	if (ft_vadd(&vector, line) == EXIT_FAILURE)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
 	return (EXIT_SUCCESS);

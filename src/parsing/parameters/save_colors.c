@@ -74,6 +74,8 @@ int	ft_save_colors(char *line, int *color, t_program *data, int *param)
 	char	**split;
 	int		*colors_array;
 
+	if (*param)
+		return (ft_parsing_err(DUP_PARAM, line, data));
 	if (ft_check_comma(line, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	split = ft_split(line, " ,\n\t");

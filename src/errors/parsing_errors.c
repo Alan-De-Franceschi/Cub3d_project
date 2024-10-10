@@ -44,12 +44,12 @@ int	ft_parsing_err(int err, char *param, t_program *data)
 		ft_print_wrong_param(err, param);
 	else if (err == DUP_PARAM)
 		ft_print_wrong_param(err, param);
-	else if (err == SPLIT_MEM)
-		perror("Error\nSplit");
-	else if (err == MEM_ERR)
+	else if (err == MEM_ERR || err == SPLIT_MEM)
 		perror("Error\nMalloc");
 	else if (err == PATH_ERR)
 		perror("Open");
+	else if (EMPTY_LINE)
+		ft_putstr_fd("Error\nEmpty line on map\n", 2);
 	else if (err == ATOI_ERR)
 		ft_putstr_fd("Error\nAtoi: numeric argument (range[0,255]) required\n",
 			2);

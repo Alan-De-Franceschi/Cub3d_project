@@ -151,6 +151,7 @@ typedef struct s_program
 	int				c;
 	int				map_file;
 	t_vector		*vemap;
+	int				first_line;
 	int				nb_line;
 	int				nb_column;
 	int				start_x;
@@ -226,6 +227,7 @@ enum				e_errors
 	GAME_IMG = 23,
 	GAME_ADDR = 24,
 	DUP_PARAM = 25,
+	EMPTY_LINE = 26,
 };
 
 int					ft_parsing_err(int err, char *param, t_program *data);
