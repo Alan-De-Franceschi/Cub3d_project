@@ -16,7 +16,8 @@ void	ft_event_handler(t_program *data)
 	mlx_hook(data->game.win, KeyPress, KeyPressMask, &ft_on_key_press, data);
 	mlx_hook(data->game.win, KeyRelease, KeyReleaseMask, &ft_on_key_release,
 		&data->game.player);
-	mlx_hook(data->game.win, LeaveNotify, LeaveWindowMask, &ft_manage_mouse,
-		&data->game);
+	if (data->bonus == 1)
+		mlx_hook(data->game.win, LeaveNotify, LeaveWindowMask, &ft_manage_mouse,
+			&data->game);
 	return ;
 }
