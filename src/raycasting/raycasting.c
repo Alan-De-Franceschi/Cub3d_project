@@ -54,8 +54,8 @@ void	ft_first_raycast(t_game *game)
 		ray.unit_step = ft_get_distance_for_next_intersection(ray.dir);
 		ft_get_first_intersection_coordinates(&ray, game);
 		ft_find_nearest_wall(&ray, game);
-		ft_get_x_point_of_impact(&ray);
 		ft_get_wall_info(&ray, *game, i);
+		ft_get_x_point_of_impact(&ray);
 		x -= WEIGHT / game->player.plane_x;
 		ft_draw_player_viewpoint(ray, game, x);
 		i++;
@@ -82,8 +82,8 @@ int	ft_raycast(t_game *game)
 			ray.unit_step = ft_get_distance_for_next_intersection(ray.dir);
 			ft_get_first_intersection_coordinates(&ray, game);
 			ft_find_nearest_wall(&ray, game);
-			ft_get_x_point_of_impact(&ray);
 			ft_get_wall_info(&ray, *game, i);
+			ft_get_x_point_of_impact(&ray);
 			x -= WEIGHT / game->player.plane_x;
 			ft_draw_player_viewpoint(ray, game, x);
 			i++;

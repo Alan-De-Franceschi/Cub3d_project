@@ -40,9 +40,9 @@ void	ft_init_player(t_program *data)
 	else if (data->start == 'S')
 		data->game.player.angle = 90;
 	else if (data->start == 'E')
-		data->game.player.angle = 180;
-	else if (data->start == 'W')
 		data->game.player.angle = 0;
+	else if (data->start == 'W')
+		data->game.player.angle = 180;
 	data->game.player.speed_move = 200.0f;
 	data->game.player.up = false;
 	data->game.player.strafe_left = false;

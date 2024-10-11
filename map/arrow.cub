@@ -2,8 +2,8 @@ F 76,76,76
 
 NO ./assets/arrowup.xpm
 SO ./assets/arrowdown.xpm
-WE ./assets/arrowright.xpm
-EA               ./assets/arrowleft.xpm                      
+WE ./assets/arrowleft.xpm
+EA               ./assets/arrowright.xpm                      
 C 255,255,25    
 
 
