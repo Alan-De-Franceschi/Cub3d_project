@@ -1,7 +1,7 @@
-NO ./assets/Bricks_1.xpm
-SO ./assets/Mossy-Small-Brick_1.xpm
-WE ./assets/Star-Block_1.xpm
-EA ./assets/Wood.xpm
+NO ./assets/pikachu.xpm
+SO ./assets/mew.xpm
+WE ./assets/evolixpikachu.xpm
+EA ./assets/pichu.xpm
 
 F 20,20,-20
 C 200,200,200
