@@ -20,7 +20,6 @@ void	ft_free_parsing(t_program *data)
 		ft_free_strtab(&data->vemap->array);
 	free(data->vemap);
 	ft_free_strtab(&data->game.map);
-	
 	if (data->n)
 		mlx_destroy_image(data->game.mlx, data->game.n.img);
 	if (data->s)

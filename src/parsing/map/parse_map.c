@@ -57,7 +57,7 @@ static int	ft_map_alloc(char **array, t_program *data)
 int	ft_parse_map(t_vector *vector, t_program *data)
 {
 	int	size;
-	int line_len;
+	int	line_len;
 
 	size = ft_count_line(vector->array);
 	line_len = ft_max_len(vector->array);

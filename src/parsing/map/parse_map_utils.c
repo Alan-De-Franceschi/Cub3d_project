@@ -22,7 +22,6 @@ int	ft_is_empty_line(char *line)
 		return (0);
 }
 
-
 int	ft_hlimit(char *str, int line)
 {
 	while (*str != '\n' && *str != '\0')
