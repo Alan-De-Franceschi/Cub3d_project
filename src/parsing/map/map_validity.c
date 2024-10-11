@@ -27,23 +27,41 @@ static int	ft_check_limits(int line, int size, int *start, char *str)
 	return (EXIT_SUCCESS);
 }
 
+static int	ft_check_empty_line(char **array, int nb_line)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_line)
+	{
+		if (ft_is_empty_line(array[i]))
+			return (EXIT_FAILURE);
+		++i;
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	ft_map_validity(char **array)
 {
 	int	line;
-	int	size;
+	int	nb_line;
 	int	start;
+	int	i;
 
 	line = 1;
 	start = 0;
-	size = ft_strtab_len(array);
-	if (size <= 2)
+	i = 0;
+	nb_line = ft_count_line(array);
+	if (nb_line <= 2)
 		return (ft_map_err(MAP_SIZE, 0, 0, 0));
-	while (*array)
+	if (ft_check_empty_line(array, nb_line) == EXIT_FAILURE)
+		return (ft_map_err(EMPTY_LINE, 0, 0, 0));
+	while (i < nb_line)
 	{
-		if (ft_check_limits(line, size, &start, *array) == EXIT_FAILURE)
+		if (ft_check_limits(line, nb_line, &start, array[i]) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		++line;
-		++array;
+		++i;
 	}
 	if (start != 1)
 		return (ft_map_err(NO_START, start, line, 0));

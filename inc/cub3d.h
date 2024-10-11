@@ -192,8 +192,8 @@ int					ft_map_validity(char **array);
 int					ft_fill_map(char **array, t_program *data, int line_len,
 						int nb_line);
 /*Parsing utils*/
-int					ft_max_len(char **array);
-int					ft_count_dot(char **array);
+int					ft_is_empty_line(char *line);
+int					ft_count_line(char **array);
 int					ft_hlimit(char *str, int line);
 int					ft_vlimit(char *str, int line, int *start);
 

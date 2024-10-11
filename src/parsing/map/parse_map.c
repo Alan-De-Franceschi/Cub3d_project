@@ -12,11 +12,42 @@
 
 #include "cub3d.h"
 
+static int	ft_linelen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\n' && s[i] != '\0')
+		++i;
+	return (i);
+}
+
+static int	ft_max_len(char **array)
+{
+	int	i;
+	int	max;
+	int	len;
+
+	i = 0;
+	max = 0;
+	len = 0;
+	while (array[i])
+	{
+		len = ft_linelen(array[i]);
+		if (len > max)
+			max = len;
+		++i;
+	}
+	return (max);
+}
+
 static int	ft_map_alloc(char **array, t_program *data)
 {
 	int	nb_line;
 
-	nb_line = ft_strtab_len(array);
+	nb_line = ft_count_line(array);
 	data->game.map = ft_calloc(nb_line + 1, sizeof(char *));
 	if (!data->game.map)
 		return (ft_parsing_err(MEM_ERR, NULL, data));
@@ -25,14 +56,19 @@ static int	ft_map_alloc(char **array, t_program *data)
 
 int	ft_parse_map(t_vector *vector, t_program *data)
 {
-	data->nb_column = ft_max_len(vector->array);
-	data->nb_line = ft_strtab_len(vector->array);
+	int	size;
+	int line_len;
+
+	size = ft_count_line(vector->array);
+	line_len = ft_max_len(vector->array);
 	if (ft_map_validity(vector->array) == EXIT_FAILURE)
 		return (ft_free_parsing(data), EXIT_FAILURE);
 	if (ft_map_alloc(vector->array, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (ft_fill_map(vector->array, data, data->nb_column,
-			data->nb_line) == EXIT_FAILURE)
+	if (ft_fill_map(vector->array, data, line_len,
+			size) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	data->nb_column = ft_strlen(data->game.map[0]);
+	data->nb_line = ft_strtab_len(data->game.map);
 	return (EXIT_SUCCESS);
 }

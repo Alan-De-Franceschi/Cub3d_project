@@ -12,46 +12,16 @@
 
 #include "cub3d.h"
 
-static int	ft_linelen(const char *s)
+int	ft_is_empty_line(char *line)
 {
-	int	i;
-
-	i = 0;
-	if (!s)
+	while (*line == ' ' || *line == 9)
+		line++;
+	if (*line == '\n' || *line == '\0')
+		return (1);
+	else
 		return (0);
-	while (s[i] != '\n' && s[i] != '\0')
-		++i;
-	return (i);
 }
 
-int	ft_max_len(char **array)
-{
-	int	i;
-	int	max;
-	int	len;
-
-	i = 0;
-	max = 0;
-	len = 0;
-	while (array[i])
-	{
-		len = ft_linelen(array[i]);
-		if (len > max)
-			max = len;
-		++i;
-	}
-	return (max);
-}
-
-int	ft_count_dot(char **array)
-{
-	int	count;
-	int	max_len;
-
-	max_len = ft_max_len(array);
-	count = ft_strtab_len(array) * max_len;
-	return (count);
-}
 
 int	ft_hlimit(char *str, int line)
 {
@@ -87,4 +57,20 @@ int	ft_vlimit(char *str, int line, int *start)
 	if (*str != '1')
 		return (ft_map_err(NOT_CLOSED, *start, line, *str));
 	return (EXIT_SUCCESS);
+}
+
+int	ft_count_line(char **array)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (array[i])
+	{
+		if (!ft_is_empty_line(array[i]))
+			++count;
+		++i;
+	}
+	return (count);
 }

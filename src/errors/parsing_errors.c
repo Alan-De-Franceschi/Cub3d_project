@@ -48,8 +48,6 @@ int	ft_parsing_err(int err, char *param, t_program *data)
 		perror("Error\nMalloc");
 	else if (err == PATH_ERR)
 		perror("Open");
-	else if (EMPTY_LINE)
-		ft_putstr_fd("Error\nEmpty line on map\n", 2);
 	else if (err == ATOI_ERR)
 		ft_putstr_fd("Error\nAtoi: numeric argument (range[0,255]) required\n",
 			2);
@@ -66,17 +64,19 @@ int	ft_map_err(int err, int start, int line, char c)
 		else
 			ft_printf("Error\nMap: Invalid char '%c' on line %d\n", 2, c, line);
 	}
-	if (err == NOT_CLOSED)
+	else if (err == NOT_CLOSED)
 		ft_printf("Error\nMap: Map not closed at line %d\n", 2, line);
-	if (err == MAP_SIZE)
+	else if (err == MAP_SIZE)
 		ft_printf("Error\nMap: Map size less than 3 lines\n", 2);
-	if (err == NO_START)
+	else if (err == NO_START)
 	{
 		if (start < 1)
 			ft_printf("Error\nMap : There is no start point\n", 2);
 		else
 			ft_printf("Error\nMap : There is more than one start point\n", 2);
 	}
+	else if (err == EMPTY_LINE)
+		ft_putstr_fd("Error\nEmpty line on map\n", 2);
 	return (EXIT_FAILURE);
 }
 
