@@ -240,7 +240,7 @@ int					ft_serv_err(int err, t_program *data);
 /****************************************************************************/
 
 void				ft_free_parsing(t_program *data);
-void				end_game(t_program *data);
+int					end_game(t_program *data);
 
 /******************************MAP******************************/
 void				ft_draw_minimap(t_program *data);

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include <cub3d.h>
 
-void	end_game(t_program *data)
+int	end_game(t_program *data)
 {
 	ft_free_parsing(data);
 	exit(0);
